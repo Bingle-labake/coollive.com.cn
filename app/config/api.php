@@ -26,7 +26,7 @@ $config['video']['api_video'] = 'http://spark.bokecc.com/api/video';
 #获取视频分类
 $config['video']['api_category'] = 'http://spark.bokecc.com/api/video/category';
 #callback
-#$config['video']['notify_url'] = 'http://42.120.4.50:8080/space/video/notify';
+#$config['video']['notify_url'] = 'http://127.0.0.1:8080/space/video/notify';
 #$config['video']['notify_url'] = 'http://www.saiku.com.cn/space/video/notify';
 $config['video']['notify_url'] = 'http://demo.saiku.com.cn/upload/video/notify';
 #视频上传flash

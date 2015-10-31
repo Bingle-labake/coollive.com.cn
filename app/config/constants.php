@@ -45,11 +45,11 @@ define('MEMCACHED_PORT', 11211);
 define('MEMCACHED_PCONNECT', 1);
 
 //sphinx 配置
-define('SPHINX_HOST', '42.120.4.50');
+define('SPHINX_HOST', '127.0.0.1');
 define('SPHINX_PORT', 9312);
 
 //redis 配置
-define('REDIS_HOST', '42.120.4.50');
+define('REDIS_HOST', '127.0.0.1');
 define('REDIS_PORT', 6379);
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */
