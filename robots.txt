@@ -1,5 +1,5 @@
 #
-# robots.txt for SAIKU
+# robots.txt for Coollive
 #
 
 User-agent: *
