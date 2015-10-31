@@ -1,0 +1,137 @@
+<?php $this->load->view('public/common_head.php'); ?>
+<?php $this->load->view('public/space_head.php'); ?>
+<div class="pub-content">
+	<div class="pub-w usr_content">
+		<?php $this->load->view('public/space_left.php'); ?>
+		<div class="usr_contentR fr">
+			<div class="usr_filter">
+                <li><a href="javascript:;">&nbsp;</a></li>
+				<li><a href="javascript:;">&nbsp;</a></li>
+                <li><a href="javascript:;">&nbsp;</a></li>
+			</div>
+            <?php if(isset($game[0])){ ?><div class="pub-select" id="iisgame"><?php echo $game[0]['longtitle']?></div><?php } ?>
+			<div class="usr_bigImg" id="usr_bigImg">
+				<div class="img"><img src="<?php echo $photo[0]['pic_path']?>" alt=""></div>
+				<span class="btnl"></span>
+				<span class="btnr"></span>
+				<span class="view"></span>
+				<span class="number fA fB f16px cWhite"><i class="cOrange">1</i> / 1</span>
+				<dl class="mask hide">
+					<dt></dt>
+					<dd><a href=""></a><a onclick="location.href='/space/look?gid=<?php echo $gid?>&page=<?php echo $page+1;?>'"  href="" class="next cWhite">阅览下一个图集</a><span class="close"></span></dd>
+				</dl>
+			</div>
+			<script>
+			(function(){
+                var arr = <?php echo $pic_url; ?>;
+				moreImg($("#usr_bigImg"),arr);
+                $("#option").delegate("a","click",function(){
+                })
+			})();
+			</script>
+			<div class="usr_txtshow">
+				<dl class="share">
+                    <dt class="fl">
+    					<div class="bshare-custom icon-medium"><a title="分享到新浪微博" class="bshare-sinaminiblog"></a><a title="分享到微信" class="bshare-weixin"></a><a title="分享到人人网" class="bshare-renren"></a><a title="分享到腾讯微博" class="bshare-qqmb"></a><a title="分享到QQ空间" class="bshare-qzone"></a><a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a><!--<span class="BSHARE_COUNT bshare-share-count">0</span>--></div>
+    				</dt>
+					<dd class="fr">投票数: <i class="cOrange"><?php echo $photo[0]['vote']?></i>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:;"  onclick="$('.usr_edit').show();$('.usr_txtshow').hide();">编辑</a></dd>
+				</dl>
+				<dl class="tag clearfix">
+					<dt class="cOrange fl">标签：<?php echo $photo[0]['tag']?></dt>
+				</dl>
+				<p class="cBlack">简介：<br><?php echo $photo[0]['description']?></p>
+			</div>
+            <div class="usr_edit hide">
+				<dl class="share">
+					<dt class="fl">
+    					<div class="bshare-custom icon-medium"><a title="分享到新浪微博" class="bshare-sinaminiblog"></a><a title="分享到微信" class="bshare-weixin"></a><a title="分享到人人网" class="bshare-renren"></a><a title="分享到腾讯微博" class="bshare-qqmb"></a><a title="分享到QQ空间" class="bshare-qzone"></a><a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a><!--<span class="BSHARE_COUNT bshare-share-count">0</span>--></div>
+    				</dt>
+					<dd class="fr">投票数: <i class="cOrange"><?php echo $photo[0]['vote']?></i>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:;" onclick="$('.usr_edit').hide();$('.usr_txtshow').show();">取消编辑</a></dd>
+				</dl>
+				<div class="edit">
+					<dl class="form">
+						<dt>简&nbsp;&nbsp;介：</dt>
+						<dd>
+							<textarea id="description"><?php echo $photo[0]['description']?></textarea>
+						</dd>
+					</dl>
+					<dl>
+						<dt>标&nbsp;&nbsp;签：</dt>
+						<dd id="setTags">
+							<div class="b_form_tags">
+								<ul>
+									<?php if(!empty($photo[0]['tag'])){$tag_arr = explode(',',$photo[0]['tag']);foreach($tag_arr as $v){ ?>
+                                    <li class="xtag"><em><?php echo $v ?></em><b title="删除当前标签"></b></li>
+                                    <?php }} ?>
+									<li class="b_form_tags_input"><input type="text" /></li>
+								</ul>
+								<span></span> </div>
+						</dd>
+						<script>setTags($("#setTags"));//内部节构不要调整。</script>
+					</dl>
+					<dl class="form">
+						<dt>&nbsp;</dt>
+						<dd><a href="javascript:;" onclick="$('.usr_edit').hide();$('.usr_txtshow').show();">取消</a><a id="submita" href="javascript:;">确定</a></dd>
+					</dl>
+                    <input type="hidden" name="title" value="<?php echo $photo[0]['title'];?>" id="title">
+                    <script>
+                        $("#submita").click(function(){
+                            var tag_i ='';
+                            var taga  = '';
+                            var i = 0;
+                            $('.b_form_tags em').each(function() {
+                                taga = $(this).html();
+                                if(i>0)tag_i += ',';
+                                tag_i += taga;
+                                i++;
+                            });
+                            var tag = encodeURIComponent(tag_i, "utf-8");
+                            var description = encodeURIComponent($("#description").val(), "utf-8");
+                            var title = encodeURIComponent($("#title").val(), "utf-8");
+                            $.get('/space/up/upphotoinfo?tag='+tag+'&title='+title+'&description='+description+'&id=<?php echo $photo[0]['id']; ?>', function(data){
+                                var jsondata = jQuery.parseJSON(data);
+                                if(jsondata.status === 1)
+                                {
+                                    alert('编辑成功');
+                                    javascript:window.top.location.reload();
+                                }
+                                else
+                                {
+                                    alert('编辑失败（标题、标签、简介不能为空）');
+                                    $('.usr_edit').show();$('.usr_txtshow').hide();
+                                }
+                            });
+                    });
+                </script>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="pub-downmenu hide" id="pub-downmenu">
+<?php foreach($game as $k => $info){ 
+    if($info['id'] == $gid ){ ?>
+    <script>
+        $('#iisgame').html('<?php echo $info['longtitle']?>');
+        var bsharetitle = '<?php echo $info['longtitle'];?>';
+    </script>    
+    <?php }else{ ?>
+    <li data-val="<?php echo $info['id']?>"><?php echo $info['longtitle']?></li>
+<?php }} ?>
+</div>
+<script>
+$.downMenu($("#iisgame"),$("#pub-downmenu"),function(element){
+    location.href='/space/look?gid='+element.data("val");
+});
+</script>
+<!--content end-->
+<script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=317433ee-2548-48e2-88db-f3d46d1f16eb&amp;pophcol=2&amp;lang=zh"></script><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script> 
+<script type="text/javascript" charset="utf-8">
+bShare.addEntry({
+	url: '<?php echo site_url($photo[0]['pic_url']);?>',
+    title:bsharetitle,
+	summary: decodeURIComponent('<?php echo $photo[0]['description'];?>'),
+	pic: '<?php echo $photo[0]['pic_path'];?>'
+});
+</script> 
+<?php $this->load->view('public/footer.php'); ?>

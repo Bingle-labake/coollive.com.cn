@@ -1,0 +1,57 @@
+<?php $this->load->view('public/common_head.php'); ?>
+<?php $this->load->view('public/space_head.php'); ?>
+<div class="pub-content">
+	<div class="pub-w usr_content">
+		<?php $this->load->view('public/space_left.php'); ?>
+		<div class="usr_contentR fr">
+			<div class="usr_filter">
+				<ul class="cWhite">
+					<li <?php if($type == 0){echo 'class="on"';} ?> ><a href="/u/work/look">参赛作品</a></li>
+					<li <?php if($type == 1){echo 'class="on"';}?>><a href="/u/work/video">非参赛视频</a></li>
+                    <li <?php if($type == 2){echo 'class="on"';}?>><a href="/u/work/album">非参赛图集</a></li>
+				</ul>
+			</div>
+            <?php if(!empty($game)){ ?><div class="pub-select" style="width: 300px;"  id="iisgame"><?php echo $longtitle; ?></div><?php } ?>
+			<div class="usr_manage">
+			    <?php if(isset($photo)){?>
+                <?php foreach($photo as $info){?> 
+                <dl>
+					<dt class="cWhite">
+						<a target="_blank" href="<?php echo $this->config->item('base_url').$info['pic_url']?>"><img src="<?php echo $info['pic_path']?>" alt="<?php echo $info['title']?>"></a>
+						<strong><a target="_blank" href="<?php echo $info['pic_url']?>"><?php echo $info['title']?></a></strong>
+					</dt>
+					<dd>
+						<div class="date">上传时间：<?php echo $info['adddate']?></div>
+						<div class="tag">
+							<p class="f14px fY">参赛活动：<?php echo $info['longtitle']?><br>图片标题： <a target="_blank" href="<?php echo $this->config->item('base_url').$info['pic_url']?>"><?php echo $info['title']?></a></p>
+							<!--<strong class="tag cOrange">标签： <?php echo $info['tag']?></strong>-->
+						</div>
+					</dd>
+				</dl>
+                <?php } ?>
+				<?php } ?>
+			</div>
+			<?php if(isset($page)){echo $page;}?>
+		</div>
+	</div>
+</div>
+<?php if(isset($game)){ ?>
+<div class="pub-downmenu hide" id="pub-downmenu">
+<?php foreach($game as $k => $info){ 
+    if($info['id'] == $gid ){ ?>
+    <script>
+        $('#iisgame').html('<?php echo $info['longtitle']?>');
+    </script>    
+    <?php }else{ ?>
+    <li data-val="<?php echo $info['id']?>"><?php echo $info['longtitle']?></li>
+    <?php }  ?>
+<?php }  ?>
+</div>
+<script>
+$.downMenu($("#iisgame"),$("#pub-downmenu"),function(element){
+    location.href='/u/work/look?gid='+element.data("val");
+});
+</script>
+<?php } ?>
+<!--content end-->
+<?php $this->load->view('public/footer.php'); ?>

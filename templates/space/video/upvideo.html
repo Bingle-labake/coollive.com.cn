@@ -1,0 +1,343 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>上传视频-赛酷</title>
+<link rel="stylesheet" href="<?php echo $temp_dir;?>/css/base.css" >
+<script type="text/javascript"  src="/public/assets/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="/public/assets/js/swfobject.js"></script>
+</head>
+<style>
+.agreement, .agreementbg {
+    position: absolute;
+    width: 1000px; 
+    margin: 0px auto;
+    left: 175px;
+    right: 175px;
+    z-index: 10;
+    height: 765px;
+    top: 52px;     
+}
+</style>
+<body>
+<!--header begin-->
+<?php $this->load->view('public/space_head.php'); ?>
+<!--header end-->
+    <!--content begin-->
+    <div class="pub-c pub-video-content">
+            <div class="agreementbg xuzhi"></div>
+        	<div class="agreement xuzhi">
+        		<div class="con">
+        			<div class="txt cWhite">
+        				<div>
+        					<h3 class="f18px">报名须知：</h3>
+        					<p>
+        						赛酷网背景<br>
+            赛酷网由圆核风采文化发展（北京）有限公司（以下简称“圆核风采”）创立并运营。圆核风采成立于2012年，核心管理团队来自香港圆核资本投资有限公司（以下简称“圆核资本”）。圆核资本是煜丰投资集团成员，是一家拥有优秀国际专业人才的私募股权投资公司。集团热爱祖国、热爱香港，自1990年以来一直注重于中国大陆的投资，涉及的领域有金融、工业、地产、文化、消费品、高科技等。集团总部位于香港，并在北京设有分支机构。圆核资本的奠基人是陈泽盛荣誉博士。在经营的过程中，圆核资本积累了大量的先进的企业管理经验和文化产业资源。圆核资本的创建者兼董事局主席陈泽盛先生身为全国政协经济组文艺界别的委员，在带领圆核资本蓬勃发展的同时，始终希望将自己的经验和文化产业资源加以利用，为丰富人民的精神文化生活、推动中国文化发展大繁荣尽一份力。2013年，圆核资本正式涉足互联网文化产业，将先进的管理运营经验和社会资源注入圆核风采文化发展（北京）有限公司，打造中国最大的文化互联网平台——赛酷网。赛酷网预计将于2014年春季正式上线运营。<br><br>
+        赛酷网简介<br>
+            赛酷网秉承圆核资本 “圆融社会资源，创造核心价值”的理念，将传统文化产业和新兴互联网平台相结合，整合圆核资本长期积累下来的文化产业资源和互联网行业资源，2014年春季，赛酷网将带着创新的模式和使命正式上线，为中国网民提供基于文化产业的信息、赛事、娱乐及互动服务。<br>
+        赛酷网的核心是文化和互动，一方面作为中国各大官方协会的赛事线上平台，让文化爱好者通过赛酷网参与其中；另一方面赛酷网也同时兼具草根品质，功能强大的系统也支持普通网友进行民间赛事的发起、执行以及用户之间的多元化互动。赛酷网前期产品的主要形式为大众广泛参与的互联网比赛平台。比赛的发起者包括平台自身、行业协会、现有比赛组织者以及未来具备资格的平台会员。比赛内容涵盖文化和生活的各个领域，如音乐、舞蹈、摄影、群众文化生活、文玩收藏等。评选以大众为主，专家评审为辅的方式，通过更合理的随机推送机制解决了现有网络评选的诸多弊端。凭借丰富的活动内容、公正的评审方式、创新的发起形式，吸引大量的用户长期参与各项比赛活动，丰富人们的文化精神需求。以后的赛酷网除了将大部分平台功能复制到移动互联网上外，还将开展线上艺术培训、艺术人才经纪、文化艺术产品电子商务、赛事承办等多方面的扩展业务，为中国文化产业的繁荣开辟一条信息化的新渠道。
+        					</p>
+        					<p>
+        						赛酷网背景<br>
+            赛酷网由圆核风采文化发展（北京）有限公司（以下简称“圆核风采”）创立并运营。圆核风采成立于2012年，核心管理团队来自香港圆核资本投资有限公司（以下简称“圆核资本”）。圆核资本是煜丰投资集团成员，是一家拥有优秀国际专业人才的私募股权投资公司。集团热爱祖国、热爱香港，自1990年以来一直注重于中国大陆的投资，涉及的领域有金融、工业、地产、文化、消费品、高科技等。集团总部位于香港，并在北京设有分支机构。圆核资本的奠基人是陈泽盛荣誉博士。在经营的过程中，圆核资本积累了大量的先进的企业管理经验和文化产业资源。圆核资本的创建者兼董事局主席陈泽盛先生身为全国政协经济组文艺界别的委员，在带领圆核资本蓬勃发展的同时，始终希望将自己的经验和文化产业资源加以利用，为丰富人民的精神文化生活、推动中国文化发展大繁荣尽一份力。2013年，圆核资本正式涉足互联网文化产业，将先进的管理运营经验和社会资源注入圆核风采文化发展（北京）有限公司，打造中国最大的文化互联网平台——赛酷网。赛酷网预计将于2014年春季正式上线运营。<br><br>
+        赛酷网简介<br>
+            赛酷网秉承圆核资本 “圆融社会资源，创造核心价值”的理念，将传统文化产业和新兴互联网平台相结合，整合圆核资本长期积累下来的文化产业资源和互联网行业资源，2014年春季，赛酷网将带着创新的模式和使命正式上线，为中国网民提供基于文化产业的信息、赛事、娱乐及互动服务。<br>
+        赛酷网的核心是文化和互动，一方面作为中国各大官方协会的赛事线上平台，让文化爱好者通过赛酷网参与其中；另一方面赛酷网也同时兼具草根品质，功能强大的系统也支持普通网友进行民间赛事的发起、执行以及用户之间的多元化互动。赛酷网前期产品的主要形式为大众广泛参与的互联网比赛平台。比赛的发起者包括平台自身、行业协会、现有比赛组织者以及未来具备资格的平台会员。比赛内容涵盖文化和生活的各个领域，如音乐、舞蹈、摄影、群众文化生活、文玩收藏等。评选以大众为主，专家评审为辅的方式，通过更合理的随机推送机制解决了现有网络评选的诸多弊端。凭借丰富的活动内容、公正的评审方式、创新的发起形式，吸引大量的用户长期参与各项比赛活动，丰富人们的文化精神需求。以后的赛酷网除了将大部分平台功能复制到移动互联网上外，还将开展线上艺术培训、艺术人才经纪、文化艺术产品电子商务、赛事承办等多方面的扩展业务，为中国文化产业的繁荣开辟一条信息化的新渠道。
+        					</p>
+        				</div>
+        			</div>
+        			<div class="btn"><a href="javascript:void(0)" onclick="$('.xuzhi').hide();" class="pub-btn f18px fY">接受</a></div>
+        		</div>
+        	</div>
+        <!--upvideo begin-->
+        <dl class="upload-video cWhite">
+            <dt class="f18px fY bg1">
+                <a href="javascript:void(0)" id="swfDiv" style="width: 140px;height: 40px;position:absolute;z-index:2;"></a><span  class="pub-btn" style="width: 140px;position:absolute;z-index:1;">上传视频</span>
+            </dt>
+        </dl>
+        <div class="improve cWhite" style="display: none;" id="progress">
+            <p class="f14px"  id="videofile"><!--<input  id="videofile" name="videofile" type="text" size="80" />--></p>
+        	<p class="f14px" id="videosize"></p><!--<span id="upfalse"></span>-->
+        	<dl class="progress">
+        		<dt><em><b style="width:0" id="upview"></b></em><i id="viewspeed"></i></dt>
+        		<dd id="uptishi"></dd>
+        	</dl>
+        </div>
+        <!--upvideo end-->
+
+        <!--upinfo begin-->
+        <form id="addvform" name="addvform" action="" method="get"	onsubmit="alert('提交视频');">
+        <div class="improve cWhite">
+            <dl class="f18px fY bg2" style="height:47px;">
+        		<dt>填写信息</dt>
+        	</dl>
+        	<h2 class="f14px">为了更好的展示您和您的作品，请认真填写以下信息。</h2>
+        	<!--<dl class="from">
+        		<dt>比赛项目：</dt>
+        		<dd>
+        			<div>
+                        <select  name="categoryid" id="categoryid">
+                        <?php foreach($category as $key=>$value)
+                        {
+                            ?>
+                            <option value="<?php echo $value["cid"]?>"><?php echo $value["category"]?></option>
+                            <?php
+                        }
+                        ?>
+                        </select>
+                    </div>
+        			<i></i>
+        		</dd>
+        	</dl>-->
+        	<dl class="from">
+        		<dt>视频标题：</dt>
+        		<dd>
+        			<div>
+        				<input type="text" id="title" name="title" value="标题建议简明扼要" onclick="this.value=''">
+        			</div>
+        			<i id="titleinfo"></i>
+        		</dd>
+        	</dl>
+        	<dl class="from">
+        		<dt>标签：</dt>
+        		<dd>
+        			<div>
+        				<input type="text" id="tag" name="tag" value="标签请用、号隔开，最多15个字" onclick="this.value=''">
+        			</div>
+        			<i id="taginfo"></i>
+        		</dd>
+        	</dl>
+        	<dl class="from">
+        		<dt>简介：</dt>
+        		<dd>
+        			<div><textarea id="description" name="description" onclick="this.value=''">让评审可以更多地了解您和您的作品，最多200字</textarea></div>
+        			<i id="descriptioninfo"></i>
+        		</dd>
+        	</dl>
+        	<dl class="from">
+        		<dt>&nbsp;</dt>
+                <input id="videoid" type="hidden" name="videoid"  value="" /> 
+                <input id="uid" type="hidden" name="uid" value="<?php echo $uid; ?>"/>
+                <input id="uname" type="hidden" name="uname" value="<?php echo $uname; ?>"/>
+        		<dd><a href="javascript:void(0);" id="videoinfo"  class="pub-btn f18px fY cWhite fl" style="width: 100px">确 定</a><i class="ok" id="add_data"></i></dd>
+        	</dl>
+        </div>
+        </form>
+        <!--upinfo end-->
+        <!--tishi begin-->
+        <dl class="upload-video cWhite">
+        	<dd class="f14px">
+                <p>视频拍摄制作要求：<br>
+                1) 视频中舞蹈表演内容不少于3分钟，非表演内容不多于10秒，整个视频长度在12分钟内；<br>
+                2) 单机位连贯拍摄，中间不能中断，不允许多机位拍摄之后剪辑；<br>
+                3) 全景拍摄，拍摄设备允许移动，镜头可小范围远近伸缩，但不允许拍摄表演者局部特写，需要始终保持取景框内为<br>
+                &nbsp;&nbsp;全部表演者；<br>
+                4)参赛作品画面比例为4:3，码率不低于256kbps，像素不低于480*360；<br>
+                <!--5)上传视频文件大小在100M内。<br>-->
+                </p>
+                <p>
+                视频格式要求：<Br>
+                适用格式：avi，mov，wma，rmvb，rm，flash，mp4，mid，3GP，asf，asx，ram，mpg，mpeg，mpe，vob，dat，.mp4v，<br>
+                m4v，mkv，f4v，mts
+                </p>
+            </dd>
+        </dl>
+        <!--tishi end-->
+    </div>
+    <!--content end-->
+<script type="text/javascript">
+var uploadvideo = false;
+var addtoinfo = false;
+// 加载上传flash ------------- start
+var swfobj=new SWFObject('<?php echo $spark_config['uploader_swf']; ?>', 'uploadswf', '140', '40', '8');
+swfobj.addVariable( "progress_interval" , 1);	//	上传进度通知间隔时长（单位：s）
+swfobj.addVariable( "notify_url" , '<?php echo $spark_config['notify_url']; ?>');	//	上传视频后回调接口
+swfobj.addParam('allowFullscreen','true');
+swfobj.addParam('allowScriptAccess','always');
+swfobj.addParam('wmode','transparent');
+swfobj.write('swfDiv');
+// 加载上传flash ------------- end
+
+//-------------------
+//调用者：flash
+//功能：选中上传文件，获取文件名函数
+//时间：2010-12-22
+//说明：用户可以加入相应逻辑
+//-------------------
+function on_spark_selected_file(filename,filesize) {
+	$("#videofile").text(filename);    
+    filesize = parseInt(filesize);
+    var videosize = '0B';
+    if(filesize >= 1024 && filesize < 1043576)
+    {
+        videosize = RoundNumber(filesize/1024,2)+'KB';
+    }else if(filesize > 1048576 && filesize < 1073741824)
+    {
+        videosize = RoundNumber(filesize/1048576,2)+'MB';
+    }else if(filesize >= 1073741824)
+    {
+        videosize = RoundNumber(filesize/1073741824,2)+'GB';
+    }else{
+        videosize = filesize+'B';
+    }
+    $("#videosize").text('文件大小：'+videosize);
+    $("#progress").show();
+    var videofile = filename;
+    var url = "/space/video/getuploadurl";
+    $.get(url, function(data){
+        var jsondata = jQuery.parseJSON(data);
+        document.getElementById("uploadswf").start_upload(jsondata.re); //	调用flash上传函数 
+    });
+}
+function RoundNumber(num, pos)  
+{  
+    return Math.round(num * Math.pow(10, pos)) / Math.pow(10, pos);  
+} 
+//-------------------
+//调用者：flash
+//功能：验证上传是否正常进行函数
+//时间：2010-12-22
+//说明：用户可以加入相应逻辑
+//-------------------
+function on_spark_upload_validated(status, videoid) {
+	if (status == "OK") {
+        //submitvideoinfo(videoid);
+		document.getElementById("videoid").value = videoid;
+        var filename = encodeURIComponent($("#videofile").text(), "utf-8");  
+        var url = "/space/video/addvideo?vid="+videoid+'&filename='+filename+'&sid='+<?php echo $sid?>;
+        $.get(url, function(data){});
+	} else if (status == "NETWORK_ERROR") {
+		alert("网络错误");
+	} else {
+		alert("api错误码：" + status);
+	}
+}
+
+//-------------------
+//调用者：flash
+//功能：通知上传进度函数
+//时间：2010-12-22
+//说明：用户可以加入相应逻辑
+//-------------------
+function on_spark_upload_progress(progress) {
+	var uploadProgress = document.getElementById("viewspeed");
+    var uploadtishi = document.getElementById("uptishi");
+	if (progress == -1) {
+		//uploadtishi.innerHTML = "上传出错：" + progress;
+        uploadtishi.innerHTML = "网络出错请重新上传";
+	} else if (progress == 100) {
+        uploadvideo = true;
+		uploadProgress.innerHTML = "100%";
+        
+        document.getElementById("upview").style.width = "100%";
+        var videoid =  document.getElementById("videoid").value;
+        $.get('/space/video/uploadok/'+videoid, function(data){
+            if(addtoinfo)
+            {
+                uploadtishi.innerHTML = "视频文件已上传成功，5秒后跳转到首页！";
+                setTimeout("location.href='/dcnc'",5000);
+            }
+            else
+            {
+                uploadtishi.innerHTML = "视频文件已上传成功，请填写信息！";
+            }
+        });
+        
+	} else {
+        uploadtishi.innerHTML = "视频文件上传中！";
+		uploadProgress.innerHTML =  progress + "%";
+        document.getElementById("upview").style.width = progress+"%";
+	}
+}
+
+function positionUploadSWF() {
+	document.getElementById("swfDiv").style.width = document
+			.getElementById("btn_width").style.width;
+	document.getElementById("swfDiv").style.height = document
+			.getElementById("btn_width").style.height;
+}
+
+var submintvideoinfo = 0;
+$("#videoinfo").live("click",function(){
+    submintvideoinfo = 1;
+    var titlel = document.getElementById("title").value;
+    var videoidl = document.getElementById("videoid").value;
+    var tagl = document.getElementById("tag").value;
+    var descriptionl = document.getElementById("description").value;
+    if(titlel == '' || titlel.length >141)
+    {
+        $("#titleinfo").html('&nbsp;标题不能为空或大于140个字');
+        return ;
+    }
+    if(tagl == ''|| tagl.length >16)
+    {
+        $("#taginfo").html('&nbsp;标签不能为空或大于15个字');
+        return ;
+    }
+    if(descriptionl == ''|| descriptionl.length >401)
+    {
+        $("#descriptioninfo").html('&nbsp;简介不能为空或大于400个字');
+        return ;
+    }
+	var videoid = encodeURIComponent(videoidl, "utf-8");
+    var title = encodeURIComponent(titlel, "utf-8");
+	var tag = encodeURIComponent(tagl, "utf-8");
+	var description = encodeURIComponent(descriptionl, "utf-8");
+    //var categoryid = encodeURIComponent(document.getElementById("categoryid").value, "utf-8");
+	var url = "/space/video/submitvideoinfo?title=" + title + "&tag=" + tag + "&description=" + description + "&vid=" + videoid;
+    
+    $("#videoinfo").css("background-color","#F4E7A4");
+    $.get(url, function(data){
+        var jsondata = jQuery.parseJSON(data);
+        switch (jsondata.status)
+        {
+            case 1:
+                addtoinfo = true;
+                if(uploadvideo)
+                {
+                    $("#add_data").html("&nbsp;&nbsp;&nbsp;信息已保存，5秒后跳转到首页！");
+                    setTimeout("location.href='/dcnc'",5000);
+                }
+                else
+                {
+                    $("#add_data").html("&nbsp;&nbsp;&nbsp;信息已保存，等待视频上传中！");
+                }
+                break;  
+            case 0:
+                $("#add_data").html('&nbsp;&nbsp;&nbsp;信息保存失败，请重新编辑提交！');
+                $("#videoinfo").css("background","none repeat scroll 0% 0% rgb(252, 142, 44)");
+                submintvideoinfo = 0;
+                break;
+            case 2:
+                $("#add_data").html("&nbsp;&nbsp;&nbsp;请先选择视频！");
+                $("#videoinfo").css("background","none repeat scroll 0% 0% rgb(252, 142, 44)");
+                submintvideoinfo = 0;
+                break;  
+            case 3:
+                $("#add_data").html("&nbsp;&nbsp;&nbsp;标题错误！");
+                $("#videoinfo").css("background","none repeat scroll 0% 0% rgb(252, 142, 44)");
+                submintvideoinfo = 0;
+                break;  
+            case 4:
+                $("#add_data").html("&nbsp;&nbsp;&nbsp;标签错误！");
+                $("#videoinfo").css("background","none repeat scroll 0% 0% rgb(252, 142, 44)");
+                submintvideoinfo = 0;
+                break;  
+            case 5:
+                $("#add_data").html("&nbsp;&nbsp;&nbsp;简介错误！");
+                $("#videoinfo").css("background","none repeat scroll 0% 0% rgb(252, 142, 44)");
+                submintvideoinfo = 0;
+                break;  
+            default:
+        }
+
+    });
+});
+</script>
+
+<!--foot begin-->
+<?php $this->load->view('public/foot.html'); ?>
+<!--foot end-->
+</body>
+</html>

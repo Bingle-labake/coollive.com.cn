@@ -1,0 +1,38 @@
+body{background:#fff;}
+.proc_w{width:1000px;margin:0 auto;position:relative;}
+.t1{width:100%;height:428px;background:#85b5e6;}
+.t2{width:100%;height:485px;background:#c6def6;overflow:hidden;}
+.t4{width:100%;height:276px;background:#d0ecde;margin-bottom:10px;}
+.proc_w .lft{width:292px;height:180px;overflow:hidden;position:absolute;left:-292px;top:0;background:url(../img/pk_processes/pk_left.jpg) no-repeat;}
+.proc_w .rgt{width:183px;height:191px;overflow:hidden;position:absolute;right:-183px;top:0;background:url(../img/pk_processes/pk_right.jpg) no-repeat;}
+.cont{width:1000px;height:428px;overflow:hidden;background:url(../img/pk_processes/pk_1000_428.jpg) no-repeat;}
+.cont dl{width:175px;overflow:hidden;float:right;padding-top:282px;}
+.cont dl a{width:150px;overflow:hidden;height:60px;display:inline-block;float:left;text-indent:-999px;}
+.cont dt a:hover{background:url(../img/pk_processes/pk_1000_428_bg.jpg) no-repeat;}
+.cont dd a:hover{background:url(../img/pk_processes/pk_1000_428_bg.jpg) no-repeat 0px -60px;}
+
+.proc_w2{width:980px;margin:0 auto;height:485px;background:url(../img/pk_processes/pk_bg002.png) no-repeat 0 269px;overflow:hidden;}
+.ptxt1{margin-top:35px;background:url(../img/pk_processes/pk_bg001.png) no-repeat 785px 0;height:180px;}
+.ptxt1 dt{height:50px;text-indent:10px;}
+.ptxt1 dd{line-height:30px;color:#808080;}
+
+.ptxt2{width:1000px;overflow:hidden;}
+.ptxt2 dl{padding:60px 17px 0 110px;float:left;width:206px;overflow:hidden;line-height:24px;}
+.ptxt2 dt{height:31px;color:#666;}
+.ptxt2 dd{color:#999;}
+
+.tit{padding:15px;}
+
+.pw_jf{width:100%;overflow:hidden;margin-bottom:10px;}
+.pw_jf dt{width:71px;height:70px;float:left;padding:55px 0 0;text-align:center;background:url(../img/pk_processes/pk_bg003.png) no-repeat center 20px;}
+.pw_jf dd{border:1px solid #e6e6e6;float:right;position:relative;width:900px;padding:15px 13px;color:#5e5e5e;line-height:30px;font-size:14px;}
+.pw_jf dt.show{padding:52px 0 0;background:url(../img/pk_processes/pk_bg004.png) no-repeat center top;}
+.pw_jf dd i{width:10px;height:15px;overflow:hidden;background:url(../img/pk_processes/pk_bg006.png) no-repeat;position:absolute;left:-10px;top:27px;}
+
+.t4 h2{color:#3a9d88;padding:18px 10px;overflow:hidden;width:980px;}
+.t4 dl{width:440px;height:128px;position:relative;background:#fff;padding:26px 0 0 50px;color:#5e5e5e;}
+.t4 dl dt{height:36px;}
+.t4 dl dd{line-height:30px;font-size:14px;}
+.t4 dl i{width:48px;height:41px;overflow:hidden;position:absolute;left:224px;top:-18px;background:url(../img/pk_processes/pk_bg005.png) no-repeat;}
+
+.cRed{color:#dd1717;}

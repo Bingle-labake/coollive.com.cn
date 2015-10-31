@@ -1,0 +1,279 @@
+<?php $this->load->view('public/common_head.php'); ?>
+<script type="text/javascript" src="/public/data/assets/upload_img/js/webuploader.html5only.min.js"></script>
+<script src="<?php echo $this->config->item('img2_url');?>/assets/js/addtag1.0.js"></script>
+<?php $this->load->view('public/space_head.php'); ?>
+<div class="pub-content">
+	<div class="pub-w usr_content">
+		<?php $this->load->view('public/space_left.php'); ?>
+		<div class="usr_contentR fr">
+			<div class="usr_filter">
+				<ul class="cWhite">
+					<li><a href="/u/work/video">视&nbsp;&nbsp;频</a></li>
+					<li class="on"><a href="/u/work/album">图&nbsp;&nbsp;片</a></li>
+				</ul>
+			</div>
+            <div class="albumTit" id="albumTit">
+				<span class="fl"><a class="cBlue" href="<?php echo $return_album_list?>">&lt;&lt; 返回相册列表</a></span>
+				<h2 class="fl"><?php echo $album_info['name']?><i>◆</i></h2>
+                <ul class="alb_fc"><i>◆</i>
+					<li>简介:<?php echo $album_info['desc']?></li>
+					<li class="cOrange">标签：<?foreach($album_tag as $tag){echo "{$tag['tag']} ";}?></li>
+                </ul>
+                <dl class="fr">
+                	<dt><input id="tip_up" type="button" value="上传" /></dt>
+                    <dd><input id="tip_use" type="button" value="批量管理" /></dd>
+                    <dd class="hide"><input id="tip_del" type="button" value="删除" /><input id="tip_close" type="button" value="取消" /></dd>
+                </dl>
+            </div>
+            <div class="albumList css3img" id="albumList">
+				<div class="albox">
+                <?php if(isset($photo)){foreach($photo as $k => $info){?> 
+                    <dl>
+						<dt class="">
+						<!-- <a href="<?php echo $this->config->item('base_url').$info['pic_url']?>"> -->
+						<a href="<?php echo $this->config->item('base_url').$album_url?>" target="_blank">
+<img width="190px" height="150px" src="<?php echo $info['pic_path']?>" alt="<?php echo $info['title']?>">
+							</a>
+							<strong><a id="name_<?php echo $info['id']?>" href="<?php echo $this->config->item('base_url').$album_url?>"><?php echo $info['title']?></a>
+						</strong>
+						<i><a href="javascript:void(0);" data-val="<?php echo $info['id']?>" class="ediTor">编辑</a><?php if($info['type']==0){?><a data-val="<?php echo $info['id']?>" href="javascript:void(0);" class="close">删除</a><?php }?></i></dt>
+						<dd data-val="<?php echo $info['id']?>"></dd>
+                    </dl>
+                <?php }} ?>
+                </div>
+            </div>
+
+			<?php if(isset($page))echo $page?>
+			</div>
+		</div>
+</div>
+</div>
+<script>
+$(function(){
+	var myc = $("#albumList"),mTit = $("#albumTit"),tip_use = $("#tip_use"),tip_del = $("#tip_del"),tip_close = $("#tip_close"),tip_up = $("#tip_up");
+	myc.find("dl.ytu").hover(function(){
+		var _this = $(this);
+		_this.addClass("on");
+		},function(){
+		var _this = $(this);
+		_this.removeClass("on");
+		});
+	mTit.find("h2").hover(function(){
+		var _this = $(this);
+		_this.next("ul").slideDown();
+		_this.find("i").addClass("cOrange");
+		},function(){
+		var _this = $(this);
+		_this.next("ul").slideUp();
+		_this.find("i").removeClass("cOrange");
+		})
+	var cRed = myc.find(".close");
+	var eTor = myc.find(".ediTor");
+	cRed.each(function(index, element) {
+		var _this = $(this);
+        _this.click(function(){
+		var mover = $.layer($("#my_colse2").html());
+			mover.find("a.remove").click(function(){
+				$.getJSON('/space/workedit/del_photo',{'id':_this.attr('data-val'),'album_id':<?php echo $album_id?>},function(rs){
+					if(rs.code == 1){
+						var id = _this.attr('data-val');
+						$.layer();
+						_this.parents("dl").hide('slow',function(){$(this).remove()})
+					}else{
+						msg_alert('删除失败');
+					}
+				})
+			});
+		})
+    });
+	eTor.each(function(index, element) {
+		var _this = $(this);
+		var id = _this.attr('data-val');
+		_this.click(function(){
+			$.getJSON('/space/workedit/photo_info',{'id':id,'album_id':<?php echo $album_id?>},function(rs){
+				if(rs.code != 1){
+					writeError('获取信息失败，请重新编辑');
+					$.layer();
+					return false;
+				}
+				$("#ed_title").val(rs.data.title);
+				$("#ed_desc").val(rs.data.description);
+				$("#ed_id").val(_this.attr('data-val'));
+			})
+			var mover = $.layer($("#my_ediTor").html());
+			mover.find("a.remove").click(function(){
+				var title = $("#ed_title").val();
+				var desc = $("#ed_desc").val();
+				if(title.isEmpty()){
+					writeError('标题不能为空');
+					return false;
+				}
+				if(desc.isEmpty()){
+					writeError('描述不能为空');
+					return false;
+				}
+				$.getJSON('/space/workedit/upphotoinfo',{'id':id,'title':title,'description':desc})
+				$.layer();
+				($("#name_"+id)).text(title);
+				msg_alert("编辑成功!");
+			});
+		})
+    });
+	myc.find("dt").hover(function(){
+		var _this = $(this);
+		_this.addClass("on");
+		},function(){
+		var _this = $(this);
+		_this.removeClass("on");});
+	myc.find("dd").each(function(index, element) {
+        var _this = $(this);
+		_this.click(function(){
+			if(_this.hasClass("on")){
+				_this.removeClass("on");
+				}else{
+				_this.addClass("on");	
+				}
+			});
+    });
+	tip_use.click(function(){
+		$(this).parent().hide().next().show();
+		myc.find("dt").addClass("on");
+		myc.find('dd').removeClass("on").show();
+		});
+	tip_close.click(function(){
+		$(this).parent().hide().prev().show();
+		myc.find("dt").removeClass("on");
+		myc.find('dd').removeClass("on").hide()
+		});
+	tip_del.click(function(){
+		var mover = $.layer($("#my_colse").html());
+			mover.find("a.remove").click(function(){
+				var ids = '',sign = '';
+				myc.find("dd.on").each(function(i,t){
+					ids += sign+$(t).attr('data-val');
+					sign = ',';
+				});
+				if(ids != '')
+					$.getJSON('/space/workedit/del_photo',{'id':ids,'album_id':<?php echo $album_id?>},function(rs){
+						if(rs.code == 1){
+								$.layer();
+								myc.find("dd.on").parent().hide('slow',function(){$(this).remove});
+							}else{
+								msg_alert('删除失败');
+						}
+					})
+				else
+					msg_alert('删除失败');
+			});
+		});
+	tip_up.click(function(){
+		var tip = $.layer($("#add_pictt").html());
+		var album_id = <?php echo $album_id?>;
+		var isSuccess = true;
+		$('#up_img_but').diyUpload({
+			url:'/space/up/testalbum?album_id='+album_id,
+			success:function( data ) {
+				if(data.result != 'OK')
+					isSuccess = false;
+			},
+			error:function( err ) {
+				isSuccess = false;
+			},
+			uploadSuccess:function(){
+				if(isSuccess){
+					$(".s3").fadeIn(300);
+
+				setTimeout(function(){
+					window.location.reload();
+					},2000)
+				}else{
+					msg_alert('上传失败');
+				}
+			}
+		});
+		tip.find(".add_uts").click(function(){
+			var _this = $(this);
+			_this.parent().next().fadeIn(300);
+			setTimeout(function(){
+				_this.parent().next().fadeOut(300);
+				$.layer();
+				},3000)
+			
+			});
+		});
+});
+
+function msg_alert(msg){
+	$.layer($("#alert").html())
+	if(msg == undefined) msg = '修改成功';
+	var str = msg+',2秒后自动关闭';
+	$("#alert_msg").text(str);
+	setTimeout(function(){$.layer()},2000);
+}
+
+function writeError(msg){
+	$("#al_err").text(msg);
+}
+
+String.prototype.trim=function(){
+	return this.replace(/(^\s*)|(\s*$)/g, "");
+}
+
+String.prototype.isEmpty=function(){
+	var str = this.trim();
+	return (str == '' || str == null)? true:false;
+}
+</script>
+<script type="text/tmpl" id="my_colse">
+<div class="my_colse">
+	<h2 class="f16px fY cWhite"></h2>
+    <dl>
+    	<dt>
+        	<h3 class="f18px fY">您确定要删除这些图片吗？</h3>
+            <p class="cOrange">删除这些图片将不可恢复，请您谨慎操作</p>
+        </dt>
+        <dd class="cWhite"><a href="javascript:;" onclick="$.layer()">取消</a><a href="javascript:;" class="remove">确定</a></dd>
+    </dl>
+</div>
+</script>
+<script type="text/tmpl" id="my_colse2">
+<div class="my_colse">
+	<h2 class="f16px fY cWhite"></h2>
+    <dl>
+    	<dt>
+        	<h3 class="f18px fY">您确定要删除图片吗？</h3>
+            <p class="cOrange">删除图片将不可恢复，请您谨慎操作</p>
+        </dt>
+        <dd class="cWhite"><a href="javascript:;" onclick="$.layer()">取消</a><a href="javascript:;" class="remove">确定</a></dd>
+    </dl>
+</div>
+</script>
+<script type="text/tmpl" id="my_ediTor">
+<div class="win-tan pic_txt">
+	<h2>编辑图片信息</h2>
+    <dl>
+    	<dt><input type="text" value="" id="ed_title"/></dt>
+        <dd><textarea id="ed_desc"></textarea></dd>
+    </dl>
+	<p id="al_err" style="color:red"></p>
+    <div class="win-but"><a href="javascript:;" onclick="$.layer()">取消</a><a href="javascript:;" class="remove">确定</a></div>
+</div>
+<input type="hidden" id="ed_id" value="0" name="ed_id"/>
+</script>
+<script type="text/tmpl" id="add_pictt">
+<div class="win-tan pic_add">
+	<h2>添加图片</h2>
+	<div id="up_img_but" style="margin:20px 0 0 15px;text-align:left"></div>	
+    <div class="win-but"></div>
+	<div class="s3 fY"><p class="f18px cOrange">添加成功！</p>（2秒后刷新页面）</div>
+</div>
+</script>
+<script type="text/tmpl" id="alert">
+	<div class="del_tuji">
+		<h2></h2>
+		<dl>
+			<dt><p class="fY f14px" id="alert_msg">修改成功</p></dt>
+		</dl>
+	</div>
+</script>
+<?php $this->load->view('public/footer.php'); ?>

@@ -1,0 +1,39 @@
+body{background:#fff;}
+.my_phone{width:1000px;overflow:hidden;margin:10px auto;min-height:500px;}
+.phone_title{width:998px;border:1px solid #ed6d34;height:30px;overflow:hidden;margin-bottom:70px;}
+.phone_title h2{width:70px;float:left;height:30px;line-height:30px;color:#fff;text-align:center;background:#ed6d34}
+.phone_cont{width:500px;margin:0 auto;}
+.phone_cont dl{width:328px;margin:0 auto;height:106px;color:#5e5e5e;font:14px/34px 'Microsoft YaHei';}
+.phone_cont dt{height:42px;overflow:hidden;}
+.phone_cont input,.phone_cont a{width:80px;height:34px;overflow:hidden;background:#bae3f9;font-size:12px;-moz-border-radius:3px;-webkit-border-radius:3px;border-radius:3px;border:none;float:right;cursor:pointer;display:inline-block;text-align:center;font-family:'simsun';}
+.phone_cont dt input,.phone_cont dt a{background:#f39800;color:#fff;}
+#hQuyzma{float:left;width:164px;height:22px;overflow:hidden;border:none;background:#ed6d34;color:#fff;margin:3px 0 10px 0;cursor:pointer;-moz-border-radius:3px;-webkit-border-radius:3px;border-radius:3px;font-size:12px;}
+.phone_sjxg{width:434px;height:45px;overflow:hidden;background:url(../img/icon_shouji_list.png) no-repeat;margin:0 auto 40px;}
+.phone_sjxg li{background:url(../img/icon_shouji_list.png) no-repeat 0px -55px;height:45px;}
+.phone_jbcg{width:434px;height:45px;overflow:hidden;background:url(../img/icon_shouji_list.png) no-repeat 0px -100px;margin:0 auto 40px;}
+.phone_bott{width:1000px;overflow:hidden;}
+.phone_bott dl{width:680px;overflow:hidden;padding-left:316px;}
+.phone_bott h2{padding-left:316px;}
+.phone_bott dt,.phone_bott h2{font:14px/26px 'Microsoft YaHei';height:26px;padding-top:7px;}
+.phone_bott dt{float:left;width:75px;}
+.phone_bott dt i{ vertical-align:middle;}
+.phone_bott dt.w94{width:94px;}
+.phone_bott dd{float:left;width:580px;overflow:hidden;padding-top:7px;line-height:26px;}
+.phone_bott dd p{float:left;line-height:20px;width:580px;}
+.phone_bott dd span{height:30px;display:inline-block;float:left;}
+.phone_bott dd span input{width:128px;height:14px;border:1px solid #ddd;padding:5px;float:left;margin-right:10px}
+.phone_bott dd span a,.phone_bott dd span a:hover{width:68px;height:24px;line-height:24px;overflow:hidden;float:left;border:1px solid #ccc;text-align:center;color:#5e5e5e; text-decoration:none;}
+.phone_bott dd input.sjh{width:269px;height:14px;overflow:hidden;border:1px solid #ddd;padding:5px;float:left;margin-right:10px}
+.phone_bott input.yzm{width:95px;height:14px;overflow:hidden;border:1px solid #ddd;padding:5px;float:left;margin:0 10px}
+.phone_bott dd i.cRed{float:left;line-height:26px;}
+.phone_bott dd input.red{border:1px solid #dd1717;}
+.phone_bott dd input.confirm{width:60px;height:30px;color:#fff;border:none;background:#ed6d34;cursor:pointer;}
+
+.phone-tan{width:340px;text-align:center;background:#fff;}
+.phone-tan h2{padding:12px 20px 0;height:24px;overflow:hidden;background:#efa280;color:#fff;}
+.phone-tan dl{padding:26px 0 30px;}
+.phone-tan dt{line-height:30px;padding-bottom:16px;}
+.phone-tan dd a,.phone-tan dd a:hover{padding:0 15px;overflow:hidden;line-height:30px;color:#fff;background:#ed6d34;display:inline-block;margin:0 8px;}
+.phone-tan dd a:hover{background:#EFA280;}
+.WINCLOSE{display:none;}
+.w458{width:458px;}

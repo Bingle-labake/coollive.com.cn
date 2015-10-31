@@ -1,0 +1,567 @@
+<?php $this->load->view('public/common_head.php'); ?>
+<?php $this->load->view('public/space_head.php'); ?>
+<div class="pub-content">
+	<div class="pub-w usr_content">
+		<?php $this->load->view('public/space_left.php'); ?>
+		<div class="usr_contentR fr">
+			<div class="usr_filter">
+				<ul class="cWhite">
+					<li class="on"><a href="<?php echo $controller_url?>">视&nbsp;&nbsp;频</a></li>
+					<li><a href="/u/work/album">图&nbsp;&nbsp;片</a></li>
+				</ul>
+			</div>
+            <div class="myc_title">
+            	<ul>
+					<li <?php if($act==0) echo "class='on'"?>><a href="<?php echo $controller_url?>?act=0">全部<i>◆</i></a></li>
+                	<li <?php if($act==1) echo "class='on'"?>><a href="<?php echo $controller_url?>?act=1">参赛视频<i>◆</i></a></li>
+                	<li <?php if($act==2) echo "class='on'"?>><a href="<?php echo $controller_url?>?act=2">非参赛视频<i>◆</i></a></li>
+                	<li <?php if($act==3) echo "class='on'"?>><a href="<?php echo $controller_url?>?act=3">参赛视频上传失败<i>◆</i></a></li>
+                </ul>
+            </div>
+            <div class="myc_tit2"><span>相册</span><i>状态</i><em>操作</em></div>
+			<div class="myc_setup" id="myc_setup">
+				<!--循环-->
+				<?php
+					if($count) 
+						foreach($video as $v){
+
+						switch($v['status']){
+							case 1:
+							case 0:
+							$statusMsg = ($v['status'] == 1)?'视频转码中，&nbsp;&nbsp;&nbsp;<br>请您耐心等待...':'上传失败';
+								$img = '/public/data/images/photo/photo_default.jpg'; //相册url
+							break;
+							case 2:
+							$statusMsg = '转码成功！&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>视频审核中，&nbsp;&nbsp;&nbsp;&nbsp;<br>请您耐心等待...';
+								$img = '/public/data/images/photo/photo_default.jpg'; //相册url
+							break;
+							case -1://人大活动转码失败处理
+							case -2:
+							case -4: 
+							if($v['status'] == -1)
+								$statusMsg = '审核未通过';
+							else if($v['status'] == -2)
+								$statusMsg = '管理员删除';
+							else
+								$statusMsg = '转码失败！&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>请重新上传';
+
+								$img = '/public/data/images/photo/photo_default.jpg'; //相册url
+							break;
+							case 3:
+								$statusMsg = '审核通过';
+								$params = array('id'=>$v['id']);
+								//图片地址
+								if(isset($v['path'])) $params['path'] = $v['path'];
+								$img_params = array('pic_name'=>'1.jpg','pic_path'=>$v['pic_path'],'w'=>190,'h'=>150); 
+								$img = img_url_path('video',$img_params);
+								$img_a = $v_path.build_uri('video',$params);
+							break;
+						}
+				?>
+            	<div class="yitem css3img">
+						<?php
+						switch($v['status']){
+							/*=================== status = 1 ===========================*/
+							case 0:
+							case 1:
+							case -1:
+							case -2:
+							case -4:
+						?>
+                	<dl class="ytu">
+						<dt>
+							<img src="<?php echo $img?>" alt="" /><i></i>
+						</dt>
+						<dd><strong>
+								<?php echo $v['title']?>
+							</strong></dd>
+                    </dl>
+                    <ul class="yitem_ul">
+						<li><?php echo (isset($v['longtitle']))? $v['longtitle']:'';?></li>
+						<li><?php echo $v['title']?></li>
+						<li><?php echo $v['update']?></li>
+                    </ul>
+                    <dl class="yitem_dl">
+						<dt><i><?php echo $statusMsg?></i></dt>
+						<?php
+							if($v['type'] == 1 && isset($v['gid']) && ($v['gid'] == 17 || $v['gid'] == 9 || $v['gid'] == 14) && ($v['status'] < 0)){ //判定是否为星光少年,人大活动
+								$renda_url = $this->config->item('base_url')."/upload/edit?sid={$v['sid']}&vid={$v['id']}&gid={$v['gid']}";
+								echo "<dd><a href='{$renda_url}' class='cBlue'>重新上传</a></dd>";
+							}
+						?>
+                    </dl>
+					<?php
+					/*=================== status = 2 ===========================*/
+					break;
+					case 2:
+					?>
+                	<dl class="ytu">
+						<dt>
+							<img src="<?php echo $img?>" alt="" /><i></i>
+						</dt>
+						<dd><strong>
+								<?php echo $v['title']?>
+							</strong></dd>
+                    </dl>
+                    <ul class="yitem_ul">
+						<li><?echo (isset($v['longtitle']))? $v['longtitle']:'';?></li>
+						<li><?php echo $v['title']?></li>
+						<li><?php echo $v['update']?></li>
+                    </ul>
+                    <dl class="yitem_dl">
+						<dt><i><?php echo $statusMsg?></i></dt>
+						<?php if($v['type'] == 1){
+						?>
+						<dd>
+						<a href="javascript:void(0);" class="cBlue edit" id="<?php echo $v['id']?>" vtype="<?php echo $v['type']?>">编辑</a>
+						</dd>
+						<?php }?>
+					</dl>
+					<?php
+					/*=================== status = 3 ===========================*/
+					break;
+					case 3:
+					if(isset($v['gid']) && $v['gid'] == 14){
+					$img_a = $this->config->item('base_url')."/youngstar/info?wid={$v['id']}";
+					}
+					?>
+                	<dl class="ytu">
+						<dt>
+						<a target="_blank" href="<?php echo $img_a?>"><img src="<?php echo $img?>" alt="" /><i></i></a>
+						</dt>
+						<dd><strong>
+							<a target="_blank" href="<?php echo $img_a?>"><?php echo $v['title']?></a>
+							</strong></dd>
+                    </dl>
+                    <ul class="yitem_ul">
+						<li>
+						<?php if(isset($v['longtitle'])){
+							$site_url = $this->config->item('base_url');
+						if($v['gid'] == 14){
+							echo "<a target='_blank' href='{$site_url}/youngstar/home'>{$v['longtitle']}</a>";
+						}else{
+							echo "<a target='_blank' href='{$site_url}/look/{$v['path']}/{$v['gid']}'>{$v['longtitle']}</a>";
+						}
+						}?> 
+						</li>
+						<li><?php echo $v['title']?></li>
+						<li><?php echo $v['update']?></li>
+                    </ul>
+                    <dl class="yitem_dl">
+						<dt><i><?php echo $statusMsg?></i></dt>
+						<dd>
+						<?php if($v['type'] == 0){?>
+						<a href="javascript:void(0);" class="cBlue edit" id="<?php echo $v['id']?>" vtype="<?php echo $v['type']?>">编辑</a>
+						<?php }?>
+						<?php if($v['type'] == 0){?>
+						<a class="cBlue" href="javascript:;" onclick="$.layer($('#videode_<?php echo $v['id']; ?>').html())">删除</a>
+                            <script type="text/tmpl" id="videode_<?php echo $v['id']; ?>">
+                                <div class="del_tuji">
+                                	<h2></h2>
+                                    <dl>
+                                    	<dt><p class="fY f14px">您确定要删除视频吗？</p><p class="cOrange">删除将不可恢复，请您谨慎操作</p></dt>
+                                        <dd><a class="qux" onClick="$.layer()" href="javascript:;">取消</a><a href="javascript:;" onclick="$.get('/space/video/delvideo/<?php echo $v['id'];?>',function(data){location.reload();});">确定</a></dd>
+                                    </dl>
+                                </div>
+                            </script>
+						<?php }?>
+						<dd></dl>
+					<?php /*end switch*/}?>
+                </div>
+				<?php }?>
+
+			</div>
+			<!--分页-->
+			<?php echo $page?>
+			</div>
+		</div>
+</div>
+</div>
+<script>
+	var cid2 = '';
+	var index = 1;
+	$(function(){
+		var myc = $("#myc_setup");
+		myc.find("dl.ytu").hover(function(){
+			var _this = $(this);
+			_this.addClass("on");
+
+			},function(){
+			var _this = $(this);
+			_this.removeClass("on");
+
+		});
+		var cBlue = myc.find("a.edit");
+		var custom = myc.find("a.custom");
+		cBlue.each(function(index, element) {
+			var _this = $(this);
+			_this.click(function(){
+				var moveet = $.layer($("#my_Editor").html());
+				var element = moveet.find("#my_tit"),
+				ul = element,
+				isshow = false, fn = null ,tmp, 
+				Edome = moveet.find("#Editor_demo"),
+				Edome2 = moveet.find("#Editor_demo_two"),
+				myEow = moveet.find("#my-Eownmenu");
+				myEow2 = moveet.find("#my-Eownmenu_two");
+
+				getInfo(_this.attr('id'),_this.attr('vtype'));
+
+				myEow.delegate('li', 'click', function(event) {
+					var _this = $(this);
+					hide();
+					tmp.html(_this.html());
+					$("#cate1").val(_this.attr('data-val'));
+					$("#cate2").val(0);
+				})
+
+				myEow2.delegate('li', 'click', function(event) {
+					var _this = $(this);
+					hide();
+					$("#cate2").val(_this.attr('data-val'));
+					tmp.html(_this.html());
+				})
+
+				Edome.click(function(event) {
+					tmp = $(this);
+					isshow = true;
+					var pos = tmp.offset();
+					myEow.css({
+						display: 'block',
+						left: 106+"px",
+						top : 114+"px",
+						width: tmp.innerWidth()
+					});
+					$(this).addClass("on");
+				});
+
+				Edome2.click(function(event) {
+					tmp = $(this);
+					isshow = true;
+					var pos = tmp.offset();
+					myEow2.css({
+						display: 'block',
+						left: 106+"px",
+						top : 153+"px",
+						width: tmp.innerWidth()
+
+					});
+					$(this).addClass("on");
+
+				});
+
+
+				function getInfo(id,type){
+					if(id != undefined)
+					$.getJSON('/space/workedit/video_info',{'id':id,'type':type},function(rs){
+						if(rs.code > 0){
+							$("#edit_title").val(rs.video.title);
+							$("#edit_desc").val(rs.video.desc);
+							var listObj = $("#title_ed");
+							/*
+							$.each(rs.tags,function(i,item){
+								var tagHtml = $("<a href='javascript:void(0);' index=''></a>");
+								tagHtml.attr('id','use_'+index++).attr('onclick','addTag(this)');
+								tagHtml.text(item.name);
+								listObj.append(tagHtml);
+							});
+							*/
+
+							$.each(rs.user_tag,function(i,item){
+								if(item)
+									insert(item,++index);
+							});
+							$.each(rs.cate,function(i,item){
+								var cateHtml = $("<li data-val=''></li>");
+								cateHtml.attr('onclick','getcate('+item.id+')').attr('data-val',item.id);
+								cateHtml.text(item.category);
+								$("#my-Eownmenu").append(cateHtml);
+								if(rs.video.cid == item.id){
+									$("#cate1").val(item.id);
+									$("#Editor_demo").html(item.category);
+									getcate(item.id);
+								}
+							})
+
+							cid2 = rs.video.cid2;
+							$("#vid").val(rs.video.vid);
+						}else{
+							msg_alert('获取数据失败');
+						}
+					})
+				}
+
+
+				function clear(){
+					clearTimeout(fn);
+					fn = null;
+
+				}
+				function timer(){
+					if(isshow){
+						fn = setTimeout(hide,1000)
+					}
+				}
+
+
+				function hide(){
+					myEow.hide();
+					myEow2.hide();
+					isshow = false;
+					Edome.removeClass("on");
+					Edome2.removeClass("on");
+
+				}
+				element.delegate('b', 'click', function(event) {
+					var _this = $(this).parent();
+					var idstr = _this.attr('id');
+					var id = idstr.match(/tag_(\d*)$/);
+
+					$("#use_"+id[1]).removeClass("on");
+					_this.remove();
+
+				})
+				moveet.find("a.quedg").click(function(){
+					var val = getVal();
+					if(val == false)
+						return false;
+
+					$.ajax({
+						url:'/space/video/submitvideoinfo',
+						beforeSend:function(){writeError('保存信息中...');},
+						data:val,
+						success:function(data){
+							var jsondata = jQuery.parseJSON(data);
+							switch (jsondata.status)
+							{
+								case 1:
+								$.layer();
+								msg_alert();
+								break;  
+								case 0:
+								writeError('信息保存失败，请重新编辑提交！');
+								break;
+								case 2:
+								writeError("请先选择视频！");
+								break;  
+								case 3:
+								writeError("标题不能为空或大于60个字！");
+								break;  
+								case 4:
+								writeError("标签不能为空或大于30个字！");
+								break;  
+								case 5:
+								writeError("简介不能为空或大于140个字！");
+								break;  
+							}
+
+						}
+					});
+				});
+
+				setShow("#Editor_demo");
+				setShow("#my-Eownmenu");
+				setShow("#Editor_demo_two");
+				setShow("#my-Eownmenu_two");
+
+				function setShow(id){
+					$(id).mouseover(function(){
+						clear();
+						}).mouseout(function(){
+						timer();
+					})
+				}
+			});
+
+		});
+		custom.each(function(i, element) {
+			var _this = $(this);
+			_this.click(function(event){
+				event.preventDefault();
+				var customService = $.layer($("#customService").html());
+				customService.find("a.quedg").click(function(){
+					$.layer();
+				});
+			});
+
+		});
+	});
+
+	function msg_alert(msg){
+		$.layer($("#alert").html())
+		if(msg == undefined) msg = '修改成功';
+		var str = msg+',2秒后自动关闭';
+		$("#alert_msg").text(str);
+		setTimeout(function(){$.layer()},2000);
+	}
+
+
+	function addTag(obj){
+		var _this = $(obj);
+		var idstr = _this.attr('id');
+		var id = idstr.match(/use_(\d*)$/);
+		(!_this.hasClass('on'))&&insert(_this.addClass('on').html(),id[1]);
+	}
+
+	function insert(str,index){
+		var tmp = $('<li><em>'+ str +'</em><b title="删除当前标签"></b></li>');
+		if(index){
+			tmp.attr('id', 'tag_'+index)
+			$("#my_tit").append(tmp);
+		}
+	}
+
+	function getcate(cateid)
+	{
+		$.get("/space/video/category1/"+cateid,function(data,status){
+			var parsedJson = jQuery.parseJSON(data); 
+			if(status == 'success' && parsedJson.status)
+			{
+				var cArray = "";
+				var cli = "";
+				var len = parsedJson.ctype.length;
+				cate1 = false;
+				for(var i=0;i<len;i++){
+					cArray = parsedJson.ctype[i];
+					cli = cli + '<li data-val="'+cArray['id']+'">'+cArray["category"]+'</li>';
+
+					if(cArray['id'] == cid2)
+					{
+						$('#cate2').val(cArray['id']);
+						$("#Editor_demo_two").html(cArray["category"]);
+						cate1 = false;
+					}
+					else
+					{
+						cate1 = true;
+					}
+				} 
+				$("#my-Eownmenu_two").html(cli);
+				if(cate1)$("#Editor_demo_two").html('--请选择二级分类--');
+			}
+			else
+			{
+				$("#my-Eownmenu_two").html('');
+				$("#Editor_demo_two").html('--无二级分类--');
+			}
+		})
+		$("#cate1").val(cateid);
+		$.getJSON("/space/video/gettag",{"cid":cateid},function(rs){
+			var listObj = $("#title_ed");
+			var len = 0;
+			listObj.html('');
+			if(rs.status == 1){
+				$.each(rs.tags,function(i,t){
+					var tagHtml = $("<a href='javascript:void(0);'></a>");
+					tagHtml.attr('id','use_'+index++).attr('onclick','addTag(this)');
+					tagHtml.text(t.tag);
+					listObj.append(tagHtml);
+					len++;
+					if(len >= 20)
+						return false;
+				})
+			}
+		});
+	}
+
+	function writeError(msg){
+		$("#al_err").text(msg);
+	}
+
+	function getVal(){
+		var cate1		= $("#cate1").val();
+		var cate2		= $("#cate2").val();
+		var tagsObj		= $("#my_tit em");
+		var title		= $("#edit_title").val();
+		var desc		= $("#edit_desc").val();
+		var vid			= $("#vid").val();
+		var tag			= '';
+		var sign		= '';
+
+		if(cate1.isEmpty()){
+			writeError('请选择一个类别');
+			return false;
+		} 
+
+		if(tagsObj.length > 0){
+			tagsObj.each(function(i,t){
+			tag += sign+$(t).text();
+			sign = ',';
+			});
+		}
+		else{
+			writeError('标签不能为空');
+			return false;
+		}
+
+		if(title.isEmpty()){
+			writeError('标题不能为空');
+			return false;
+		} 
+		if(desc.isEmpty()){
+			writeError('简介不能为空');
+			return false;
+		} 
+
+		return {'title':title,'description':desc,'category':cate1,'category1':cate2,'tag':tag,'vid':vid};
+	}
+
+	String.prototype.trim=function(){
+		return this.replace(/(^\s*)|(\s*$)/g, "");
+	}
+
+	String.prototype.isEmpty=function(){
+		var str = this.trim();
+		return (str == '' || str == null)? true:false;
+	}
+
+
+</script>
+<!--编辑-->
+<script type="text/tmpl" id="my_Editor">
+<div class="my_Editor">
+	<h2 class="cWhite">编辑相册信息</h2>
+    <div class="Editor">
+    	<dl><dt>标题：</dt><dd><input type="text" id="edit_title"/></dd></dl>
+    	<dl><dt>一级分类：</dt><dd><span id="Editor_demo" class="my_xed">第一级</span></dd></dl>
+    	<dl><dt>二级分类：</dt><dd><span id="Editor_demo_two" class="my_xed">第二级</span></dd></dl>
+    	<dl><dt>简介：</dt><dd><textarea id="edit_desc"></textarea></dd></dl>
+    	<dl><dt>标签：</dt><dd><ul id="my_tit"></ul></dd></dl>
+		<p id="title_ed">
+		</p>
+		<p id="al_err" style="color:red"></p>
+        <div class="cWhite"><a class="quedg" href="javascript:;">确定</a></div>
+    </div>
+</div>
+<div class="pub-downmenu hide" id="my-Eownmenu">
+</div>
+<div class="pub-downmenu hide" id="my-Eownmenu_two">
+</div>
+<input type="hidden" name="cate1" id="cate1" value=""/>
+<input type="hidden" name="cate2" id="cate2" value="0"/>
+<input type="hidden" name="vid" id="vid" value="0"/>
+</script>
+
+<script type="text/tmpl" id="customService">
+<div class="win-tan customService">
+	<h2><span class="win-close" onclick="$.layer()"></span>联系客服</h2>
+    <dl>
+    	<dt>问题描述：</dt>
+        <dd><textarea>请详细填写您的问题，200字以内</textarea></dd>
+    </dl>
+    <div class="win-but"><a class="quedg" href="javascript:;">确定</a></div>
+</div>
+</script>
+<script type="text/tmpl" id="alert">
+	<div class="del_tuji">
+		<h2></h2>
+		<dl>
+			<dt><p class="fY f14px" id="alert_msg">修改成功</p></dt>
+		</dl>
+	</div>
+</script>
+<!--content end-->
+<!--footer begin-->
+<!--footer end-->
+
+<?php $this->load->view('public/footer.php'); ?>

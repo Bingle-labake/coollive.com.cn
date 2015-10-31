@@ -1,0 +1,5 @@
+﻿@charset "utf-8";
+/*email 提示样式*/
+#email-suggest-list{border:#ccc solid 1px; background:#FFF; position: absolute; z-index:2000; margin: 0px; padding: 4px; list-style: none; font-size:12px; display:none;}
+#email-suggest-list li a{display:block; color:#bbb; text-decoration:none; padding:3px; zoom:1; font-size:12px;}
+#email-suggest-list li a:hover ,#email-suggest-list .active{color: #FFF; background: #F09;}

@@ -1,0 +1,27 @@
+<?php
+$lang['team'] = '社团';
+$lang['name_empty'] = '社团名称不能为空';
+$lang['desc_default'] = '请输入社团简介，内容不超过300字';
+$lang['desc_empty'] = '社团简介不能为空';
+$lang['desc_long'] = '社团简介不能超过300字';
+$lang['save_success'] = '保存成功';
+$lang['save_failed'] = '保存失败';
+$lang['kik_success'] = '取消成功';
+$lang['kik_failed'] = '取消失败';
+$lang['add_user_noexists'] = '要添加的用户不存在';
+$lang['not_allowed_self'] = '不能添加自己';
+$lang['not_allow_add'] = '你没权限添加成员';
+$lang['game_started'] = '比赛已经开始,不能添加成员';
+$lang['operation_failed'] = '操作失败';
+$lang['operated'] = '你已经操作过';
+$lang['is_member'] = '你已经是成员';
+$lang['invite_deny'] = '目前不能邀请成员';
+$lang['add_deny'] = '目前不能添加成员';
+$lang['quit_deny'] = '目前不能删除成员';
+$lang['apply_deny'] = '目前社团不能申请';
+$lang['logout_deny'] = '目前不能退出社团';
+$lang['add_to_failed'] = '目前该社团不能加入';
+$lang['apply_failed'] = '申请失败';
+$lang['logout_failed'] = '退出失败';
+$lang['invite_failed'] = '邀请失败';
+$lang['deny_failed'] = '拒绝失败';

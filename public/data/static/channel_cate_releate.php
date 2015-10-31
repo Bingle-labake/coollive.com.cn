@@ -1,0 +1,136 @@
+<?php
+$data = array (
+  0 => 
+  array (
+    'id' => '1',
+    'name' => '首页',
+    'desc' => '赛酷网',
+    'parent_id' => '0',
+    'has_child' => '1',
+    'is_show' => '1',
+    'level' => '1',
+    'type' => '0',
+    'sort' => '0',
+  ),
+  1 => 
+  array (
+    'id' => '2',
+    'name' => '比赛专区',
+    'desc' => '比赛专区',
+    'parent_id' => '0',
+    'has_child' => '0',
+    'is_show' => '1',
+    'level' => '1',
+    'type' => '0',
+    'sort' => '0',
+  ),
+  2 => 
+  array (
+    'id' => '3',
+    'name' => '参赛作品',
+    'desc' => '参赛专区',
+    'parent_id' => '0',
+    'has_child' => '0',
+    'is_show' => '1',
+    'level' => '1',
+    'type' => '0',
+    'sort' => '0',
+  ),
+  3 => 
+  array (
+    'id' => '4',
+    'name' => '赛酷圈儿',
+    'desc' => '赛酷圈儿',
+    'parent_id' => '0',
+    'has_child' => '0',
+    'is_show' => '1',
+    'level' => '1',
+    'type' => '0',
+    'sort' => '0',
+  ),
+  4 => 
+  array (
+    'id' => '5',
+    'name' => '扎堆点评',
+    'desc' => '扎堆点评',
+    'parent_id' => '0',
+    'has_child' => '0',
+    'is_show' => '1',
+    'level' => '1',
+    'type' => '0',
+    'sort' => '0',
+  ),
+  5 => 
+  array (
+    'id' => '6',
+    'name' => '专家点评',
+    'desc' => '推荐用',
+    'parent_id' => '1',
+    'has_child' => '0',
+    'is_show' => '1',
+    'level' => '2',
+    'type' => '0',
+    'sort' => '0',
+  ),
+  6 => 
+  array (
+    'id' => '7',
+    'name' => '评审达人',
+    'desc' => '评审达人推荐',
+    'parent_id' => '1',
+    'has_child' => '0',
+    'is_show' => '1',
+    'level' => '2',
+    'type' => '0',
+    'sort' => '0',
+  ),
+  7 => 
+  array (
+    'id' => '8',
+    'name' => '视频推荐',
+    'desc' => '视频推荐',
+    'parent_id' => '1',
+    'has_child' => '0',
+    'is_show' => '1',
+    'level' => '2',
+    'type' => '0',
+    'sort' => '0',
+  ),
+  8 => 
+  array (
+    'id' => '9',
+    'name' => '精彩图集',
+    'desc' => '精彩图集 推荐',
+    'parent_id' => '1',
+    'has_child' => '0',
+    'is_show' => '1',
+    'level' => '2',
+    'type' => '0',
+    'sort' => '0',
+  ),
+  9 => 
+  array (
+    'id' => '10',
+    'name' => '赛酷圈儿',
+    'desc' => '赛酷圈儿 推荐',
+    'parent_id' => '1',
+    'has_child' => '0',
+    'is_show' => '1',
+    'level' => '2',
+    'type' => '0',
+    'sort' => '0',
+  ),
+  10 => 
+  array (
+    'id' => '11',
+    'name' => '赛酷圈儿(达人)',
+    'desc' => '达人',
+    'parent_id' => '1',
+    'has_child' => '0',
+    'is_show' => '1',
+    'level' => '2',
+    'type' => '0',
+    'sort' => '0',
+  ),
+);
+?>

@@ -1,0 +1,65 @@
+<!--详情投票-->
+<dl class="xq_vote_box">
+	<dt><a target="_blank" href="<?php  if(!empty($video['userid'])) echo $this->config->item('l_url')."/u/".$video['userid'];?>"><img src="<?php echo $this->config->item('i_url'); ?>/space/upload/avatar?uid=<?php echo @$video["userid"];?>" style="width:50px;height:50px;"></a></dt>
+	<dd>
+		<div class="xq_vote">
+		<span><em>攒(<?php echo $video['vote'];?>)</em><em>播放(<?php echo $video['play'];?>)</em><em>直播(<?php echo $video['views'];?>)</em></span>
+		
+		</div>
+		<div class='xq_share cOrange'>
+			<div class="bshare-custom fr">
+                <div class="bshare-custom icon-medium"><a title="分享到新浪微博" class="bshare-sinaminiblog"></a><a title="分享到微信" class="bshare-weixin"></a><a title="分享到人人网" class="bshare-renren"></a><a title="分享到腾讯微博" class="bshare-qqmb"></a><a title="分享到QQ空间" class="bshare-qzone"></a><a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a><span class="BSHARE_COUNT bshare-share-count">0</span></div>
+            </div>
+            
+            标签：<?php echo $video['tag']?> </div>
+	</dd>
+</dl>
+<div class='xq_info'>
+	<p> 简介：<br/>
+	   <?php echo $video['description'];?>	
+    </p>
+	<?php if(isset($team)){ ?><span class="cGray">推荐到：<a href="/q/t/<?php echo $team['id'];?>" class="cGray"><?php echo $team['name'];?></a></span><?php } ?>
+</div>
+<script>
+    (function(){
+        $(".xq_vote").delegate("em","click",function(){
+            if(SK_UID <= 0)
+            {
+                $.layer('/api/member/common_login?r=<?php echo rand(10000,90000); ?>',{width:765, height:350})
+            }
+        })
+    })();
+    
+</script>
+<script type="text/tmpl" id="msgtmpl">
+	<dl class="pub-confirm">
+		<dt>
+			<strong class="f16px cOrange fY">您目前金币余额不足，如果想获得直投票，请先赚取金币</strong>
+		</dt>
+		<dd><a href="javascript:;" onclick="$.layer()">知道了</a><a target="_blank" href="<?php echo $this->config->item('i_url'); ?>/u/point">兑换金币规则</a></dd>
+	</dl>
+</script>
+<script type="text/tmpl" id="msgtmp3">
+	<dl class="pub-confirm">
+		<dt>
+			<strong class="f16px cOrange fY">今日已到达兑换直投票上限，请明天再参与直投</strong>
+		</dt>
+		<dd><a href="javascript:;" onclick="$.layer()">取消</a><a target="_blank" href="<?php echo $this->config->item('i_url'); ?>/u/point">兑换金币规则</a></dd>
+	</dl>
+</script>
+<script type="text/tmpl" id="msgtmp4">
+	<dl class="pub-confirm">
+		<dt>
+			<strong class="f16px cOrange fY">积分不够或投票失败！</strong>
+		</dt>
+		<dd><a href="javascript:;" onclick="$.layer()">取消</a><a target="_blank" href="<?php echo $this->config->item('i_url'); ?>/u/point">兑换金币规则</a></dd>
+	</dl>
+</script>
+<script type="text/tmpl" id="msgtmp5">
+	<dl class="pub-confirm">
+		<dt>
+			<strong class="f16px cOrange fY">该活动的投票已经截止，非常感谢你的参与！</strong>
+		</dt>
+		<dd><a href="javascript:;" onclick="$.layer()">取消</a></dd>
+	</dl>
+</script>

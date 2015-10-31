@@ -1,0 +1,43 @@
+body{background:#fff;}
+.shop_title{line-height:30px;background:#e6e6e6;margin:10px 0;overflow:hidden;height:30px;padding:0 18px;}
+.shop_tip{border-top:1px solid #e4e6ec;color:#999;border-bottom:1px solid #e4e6ec;line-height:30px;overflow:hidden;height:30px;padding:0 18px;}
+.shop_tip dt span{display:inline-block;margin-left:110px;}
+.shop_tip dt span i{display:inline-block;padding-right:15px;background:url(../img/icon_shop.png) no-repeat center right;cursor:pointer;}
+.shop_tip dt span i.on{background:url(../img/icon_shop_.png) no-repeat center right;}
+.shop_list{overflow:hidden;width:1030px;overflow:hidden;padding:10px 0 30px;}
+.shop_list dl{width:240px;overflow:hidden;border:1px solid #e6e6e6;float:left;height:290px;margin:0 10px 10px 0;}
+.shop_list dd{width:240px;height:170px;text-align:center;overflow:hidden;}
+.shop_list dt{padding:20px 20px 0;overflow:hidden;width:200px;height:100px;line-height:26px;color:#808080;}
+.shop_list dt a,.shop_list dt a:hover{width:70px;height:22px;overflow:hidden;color:#fff;font:14px/22px 'Microsoft YaHei'; text-decoration:none;background:#ed6d34;display:inline-block;text-align:center;margin-top:7px;}
+.shop_list p span{display:inline-block;margin-left:15px;}
+.shop_list dl.on{border:1px solid #ed6d34;}
+
+.win-tan{width:400px;text-align:center;background:#fff;}
+.win-tan h2{padding:12px 20px 0;height:24px;overflow:hidden;background:#efa280;color:#fff;}
+.win-tan dl{padding:24px 10px;}
+.win-tan dt{line-height:30px;padding-bottom:10px;color:#5e5e5e;}
+.win-but a,.win-but a:hover{padding:0 15px;overflow:hidden;line-height:30px;color:#fff;background:#ed6d34;display:inline-block;margin:5px 8px 0;}
+.win-but a:hover{background:#EFA280;}
+.WINCLOSE{display:none;}
+.shop_duih{width:790px;overflow:hidden;height:280px;margin:30px auto;border:1px solid #e6e6e6;}
+.shop_duih ul{padding:88px 0 0 90px;width:300px;line-height:30px;margin:0;}
+.shop_duih ul span{color:#ed6d34;}
+.shop_duih div{width:390px;overflow:hidden;height:280px;text-align:center;}
+
+.shop_tel{width:790px;overflow:hidden;margin:0 auto;line-height:30px;}
+.shop_tel a{font-size:12px;}
+.shop_tel dl{width:100%;overflow:hidden;}
+.shop_tel dt{float:left;width:120px;overflow:hidden;}
+.shop_tel dd{float:right;width:670px;}
+.shop_tel dd span{margin-right:40px;display:inline-block;}
+.shop_tel dd a{display:inline-block;margin-right:20px;}
+
+.shop_edit{width:790px;overflow:hidden;margin:45px auto 40px;line-height:26px;color:#5e5e5e;}
+.shop_edit dl{height:26px;padding-bottom:16px;overflow:hidden;}
+.shop_edit dt{width:75px;float:left;text-align:right;}
+.shop_edit dd{float:right;width:715px;overflow:hidden;}
+.shop_edit dd input{border:1px solid #ccc;height:14px;width:160px;line-height:16px;padding:5px;overflow:hidden;color:#5e5e5e;}
+.shop_edit dd select{height:26px;overflow:hidden;width:100px;margin-right:10px;}
+.shop_edit dd span{display:inline-block;margin:0 15px 0 0;}
+.shop_edit .win-but{text-align:center;width:600px;}
+

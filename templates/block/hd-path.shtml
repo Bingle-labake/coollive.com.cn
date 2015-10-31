@@ -1,0 +1,5 @@
+<div class="xq_path"> <a href="<?php echo $this->config->item("base_url"); ?>" class="cBlue">首页</a> > <a href="<?php echo $this->config->item("l_url"); ?>" class="cBlue">赛酷直播</a>  > <a href="<?php echo $this->config->item("l_url")."/v"; ?>" class="cBlue">精彩回放</a>  > <?php echo $video['title'];?> </div>
+
+<div class="xq_title"> <span>上传时间：<?php echo date("Y-m-d",strtotime($video['adddate']));?></span>
+	<h2 class='cOrange fY'>视频：<?php echo $video['title'];?></h2>
+</div>

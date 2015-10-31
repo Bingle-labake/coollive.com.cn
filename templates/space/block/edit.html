@@ -1,0 +1,120 @@
+<div class="b_video_info">
+	<h2 class="b_form_title f14px">为了更好的展现您的参赛作品，请认真填写以下信息。*号为必填项：</h2>
+	<div class="b_video_form">
+		<?php if(isset($game)){ ?>
+        <dl>
+			<dt>参赛活动：</dt>
+			<dd><em class="b_form_text"><?php echo @$game['longtitle'];?></em></dd>
+		</dl>
+        <?php } ?>
+		<dl>
+			<dt><em class="cRed">* </em>视频标题：</dt>
+			<dd>
+				<input id="title" type="text" name="title"  class="b_form_input" />
+			</dd>
+		</dl>
+        <?php if(!isset($game)){ ?>
+        <dl>
+			<dt>*视频一级分类：</dt>
+			<dd>
+				<span id="category" style="display:block;width: 300px;line-height: 26px;border:1px solid #ccc;padding-left: 10px;">--请选择一级分类--</span>
+			</dd>
+            <input type="hidden" name="category" value=""/>
+		</dl>
+        <dl>
+			<dt><em class="cRed">* </em>视频二级分类：</dt>
+			<dd>
+				<span id="category1" style="display:block;width: 300px;line-height: 26px;border:1px solid #ccc;padding-left: 10px;">--请选择二级分类--</span>
+			</dd>
+            <input type="hidden" name="category1" value=""/>
+		</dl>
+            <div class="pub-downmenu hide" id="pub-downmenu">
+                 <?php foreach($category as $key=>$value)
+                {
+                    ?>
+                    <li data-val="<?php echo $value["id"]?>"><?php echo $value["category"]?></li>
+                    <?php
+                }
+                ?>
+            </div>
+            <div class="pub-downmenu hide" id="pub-downmenu1">
+            </div>
+                    <!-- 上传视频 end-->
+            <script>
+            //一级分类
+            $.downMenu($("#category"),$("#pub-downmenu"),function(element){
+                //$("#typeSelect").html(typeSelect[$("#pub-downmenu").val()]);
+                $('input:hidden[name="category"]').val(element.data("val"))
+                $.get("/space/video/category1/"+element.data("val"),function(data,status){
+                    var parsedJson = jQuery.parseJSON(data); 
+                    if(status == 'success' && parsedJson.status)
+                    {
+                        var cArray = "";
+                        var cli = "";
+                        for(var i=0,len=parsedJson.ctype.length;i<len;i++){
+                            cArray = parsedJson.ctype[i];
+                            cli = cli + '<li data-val="'+cArray['id']+'">'+cArray["category"]+'</li>';
+                        } 
+                        $("#pub-downmenu1").html(cli);
+                        $("#category1").html('--请选择二级分类--');
+                    }
+                    else
+                    {
+                        $("#pub-downmenu1").html('');
+                        $("#category1").html('--无二级分类--');
+                    }
+                })
+            });
+            //二级分类
+            $.downMenu($("#category1"),$("#pub-downmenu1"),function(element){
+            	$('input:hidden[name="category1"]').val(element.data("val"))
+            });
+            </script>
+        
+        <?php } ?>
+		<dl>
+			<dt><em class="cRed">* </em>简介：</dt>
+			<dd>
+				<textarea id="description" name="description" class="b_form_textarea on"></textarea>
+			</dd>
+		</dl>
+		<dl>
+            <dt><em class="cRed">* </em>标签：</dt>
+			<dd id="setTags">
+				<div class="b_form_tags">
+					<ul>
+						<li class="b_form_tags_input"><input type="text" id="tagid"/></li>
+					</ul>
+                    <span>标签只能由中文组成,并用空格分隔</span>
+                </div>
+                <?php if(!empty($tags)){ ?>
+				<p class="b_form_tags_all">已添加标签：
+                <?php foreach($tags as $tag){ ?>
+                <a href="" index="<?php echo $tag['tid']; ?>"><?php echo $tag['tag']; ?></a>
+                <?php } ?>
+                <?php } ?>
+            </dd>
+            <input id="tag" type="hidden" name="tag"/>
+            <script>
+                    $('#tagid').blur(function ()
+                    { 
+                        var tag_i ='';
+                        var tag  = '';
+                        var i = 0;
+                        $('.b_form_tags em').each(function() {
+                            tag = $(this).html();
+                            if(i>0)tag_i += ',';
+                            tag_i += tag;
+                            i++;
+                        });
+                        $("#tag").val(tag_i);
+                    }) 
+            </script>
+			<script>setTags($("#setTags"));//内部节构不要调整。</script>
+		</dl>
+        <div style="padding-left: 187px;display:inline-block;height:30px;color:red;" id="add_data"></div>
+	</div>
+    <input id="videoid" type="hidden" name="videoid"  value="" /> 
+    
+	<div class="b_video_btn" id="videoinfo"><span class="b_form_btn f14px" >确定</span><i class="ok" id="add_data"></i></div>
+</div>

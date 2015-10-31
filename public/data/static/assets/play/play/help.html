@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>升级文档</title>
+<style type="text/css">
+body,td,th {
+	font-size: 14px;
+	line-height: 22px;
+}
+p {
+	padding-left: 20px;
+	margin: 0px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+</style>
+</head>
+
+<body>
+<p>6.4升级说明</p>
+<p>一：javascript部份<br />
+  1：去掉了swfobject函数，不再使用。当然你可以自己添加该函数继续使用。<br />
+2：加强了HTML5播放器的功能，可以实现外部控制及自动跳转下一集<br />
+3：增加了监听函数的功能（该功能适用于Flash和HTML5，但具体的使用请参考帮助手册）
+</p>
+<p>二：配置文件（ckplayer.js和ckplayer.xml）里的升级<br />
+  1:：setup属性里的第31个值去掉了原来不实用的设置，改成控制当flashvars里s&gt;0时采用何种请求（get或post方式）方式调用网址获取视频地址，增强安全性
+  <br />
+  2：setup增加第40个值控制前置广告音量<br />
+  3：增加mainfuntion属性,当flashvars里s=3/4时，调用的函数包名称，默认为空调用时间轴上的函数setAppObj
+  <br />
+  4：增加flashplayer属性，当flashvars里的s=3/4时，也可以把应该放在f参数里的swf文件放在这里
+  <br />
+  5：增加calljs属性，这是定义调用全局实时监听函数，跳过广告触发函数，播放结束触发函数的</p>
+<p>三：Flash播放器部分<br />
+  1：flashvars部分<br />
+&nbsp;&nbsp;&nbsp;&nbsp;A：修改了p属性的功能，0=默认暂停，1=默认播放，2=默认不加载视频<br />
+&nbsp;&nbsp;&nbsp;&nbsp;B：修改了m属性的功能，m可以指定一个链接网址，播放器单击时将会跳转到该网址<br />
+&nbsp;&nbsp;&nbsp;&nbsp;C：增加了lv属性，=0是普通视频，=1则是直播状态，此时锁定进度栏和快退，快进按钮<br />
+2：增加了外接视频播放插件功能。当s=4时，可以用一个flash来跟播放器做为播放交互，详细的可以看帮助手册里actionscript3.0-API</p>
+<p>四：HTML5部分<br />
+  6.4版对HTML5部分做了很多强化，
+增强了交互功能。虽然还不能达到像Flash播放器那样强大，不过像跳转到下一集这些功能有了接口</p>
+<p>五：插件部分<br />
+  重新制作了分享，开关灯，调整视频比例，精彩视频列表的功能&nbsp;&nbsp;&nbsp;&nbsp;，另增加了相当多的免费插件，如顶部调用比例插件，外挂字幕插件，弹幕插件等，请到官网下载<br />
+</p>
+</body>
+</html>

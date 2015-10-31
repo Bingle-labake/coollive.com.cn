@@ -1,0 +1,290 @@
+<?php $this->load->view('public/common_head.php'); ?>
+<?php $this->load->view('public/space_head.php'); ?>
+<div class="pub-content">
+	<div class="pub-w usr_content">
+		<?php $this->load->view('public/space_left.php'); ?>
+		<div class="usr_contentR fr">
+			<div class="usr_filter">
+				<ul class="cWhite">
+					<li><a href="/u/work/video">视&nbsp;&nbsp;频</a></li>
+					<li class="on"><a href="/u/work/album">图&nbsp;&nbsp;片</a></li>
+				</ul>
+			</div>
+            <div class="myc_title">
+            	<ul>
+					<li <?php if($act==0) echo "class='on'"?>><a href="<?php echo $controller_url?>?act=0">全部<i></i></a></li>
+                	<li <?php if($act==1) echo "class='on'"?>><a href="<?php echo $controller_url?>?act=1">参赛相册<i>◆</i></a></li>
+                	<li <?php if($act==2) echo "class='on'"?>><a href="<?php echo $controller_url?>?act=2">非参赛相册<i>◆</i></a></li>
+                </ul>
+            </div>
+            <div class="myc_tit2"><span>相册</span><i>状态</i><em>操作</em></div>
+			<div class="myc_setup" id="myc_setup">
+				<?php if(isset($photo))
+				foreach($photo as $k=>$info){
+				?>
+				<div class="yitem css3img" id="list_<?php echo $info['album_id']?>">
+                	<dl class="ytu">
+						<dt><a href="/u/work/photo?id=<?php echo $info['album_id']?>">
+						<img src="<?php echo $info['pic_path']?>" alt="<?php echo $info['name']?>"/>
+						</a>
+						</dt>
+						<dd><strong><a href="/u/work/photo?id=<?php echo $info['album_id']?>"><?php echo $info['name']?></a></strong></dd>
+                    </dl>
+                    <ul class="yitem_ul">
+						<li>
+						<?php if(isset($info['longtitle'])){
+						$site_url = $this->config->item('base_url');
+						echo "<a target='_blank' href='{$site_url}/look/{$info['path']}/{$info['gid']}'>{$info['longtitle']}</a>";
+						}?> 
+						</li>
+						<li><?php echo (isset($info['name']))? $info['name']:'';?></li>
+						<li><?php echo $info['record_time']?></li>
+                    </ul>
+                    <dl class="yitem_dl">
+						<dt>
+						<?php
+						echo ($info['status'] == 1)? '已发布':'未发布';
+						?>
+						</dt>
+						<dd class="">
+							<a class="cBlue edit" href="javascript:;" id="<?php echo $info['album_id']?>" vtype="<?php echo $info['type']?>">编辑</a>
+							<?php if($info['type'] != 2){?>
+							<a class="cRed" href="javascript:;" onclick="$.layer($('#albumdel_<?php echo $k;?>').html())">删除</a>
+				    <script type="text/tmpl" id="albumdel_<?php echo $k;?>">
+                        <div class="del_tuji">
+                        	<h2></h2>
+                            <dl>
+                            	<dt><p class="fY f14px">您确定要删除图集吗？</p><p class="cOrange">删除图集将不可恢复，请您谨慎操作</p></dt>
+								<dd><a class="qux" onClick="$.layer()" href="javascript:;">取消</a><a href="javascript:;" onclick="delRows(<?php echo $info['album_id']?>)">确定</a></dd>
+                            </dl>
+                        </div>
+                    </script>
+					<?php }?>
+						</dd>
+                    </dl>
+                </div>
+				<?php }?>
+			</div>
+			<?php if(isset($page)) echo $page;?>
+			</div>
+		</div>
+</div>
+</div>
+
+<script>
+$(function(){
+	var myc = $("#myc_setup");
+	myc.find("dl.ytu").hover(function(){
+		var _this = $(this);
+		_this.addClass("on");
+		},function(){
+		var _this = $(this);
+		_this.removeClass("on");
+		});
+	var cBlue = myc.find("a.colse");
+	cBlue.each(function(index, element) {
+		var _fthis = $(this);
+        _fthis.click(function(){
+			var colse = $.layer($("#my_colse").html());
+			colse.find(".quedg").click(function(event){
+				event.preventDefault();
+				_fthis.parents("div.yitem").remove();
+				$.layer();
+				});
+			});
+    });
+	var cBlue = myc.find("a.edit");
+	cBlue.each(function(index, element) {
+		var _this = $(this);
+        _this.click(function(){
+			var moveet = $.layer($("#my_Editor").html());
+			var element = moveet.find("#my_tit"),
+				ul = element, 
+				myTag = moveet.find("#title_ed a");
+
+			$.getJSON('/space/workedit/album_info',{'id':_this.attr('id'),'cid':_this.attr('vtype')},function(res){
+				if(res.code > 0){
+					isAlert = true;	
+					var listObj = $("#title_ed");
+					var ids = 1;
+					$("#ed_title").val(res.album.title);
+					$("#ed_desc").val(res.album.desc);
+
+					$.each(res.tags,function(i,item){
+						var tagHtml = $("<a href='javascript:void(0);' index=''></a>");
+						tagHtml.attr('id','use_'+ids++).attr('onclick','addTag(this)');
+						tagHtml.text(item.name);
+						listObj.append(tagHtml);
+					});
+					$.each(res.user_tag,function(i,item){
+						insert(item.name,ids++);
+					});
+					$("#id").val(_this.attr('id'));
+				}else{
+					writeError('编辑失败');
+					$.layer();
+				}
+			});
+
+			moveet.find("#ed_sub").click(function(){
+				var val = getVal();
+				if(val == false)
+					return false;
+
+					$.ajax({
+						url:'/space/workedit/album',
+						beforeSend:function(){writeError('保存信息中...');},
+						data:val,
+						success:function(data){
+							var jsondata = jQuery.parseJSON(data);
+							switch (jsondata.status)
+							{
+								case 1:
+								msg_alert("信息已保存");
+								break;  
+								case 0:
+								writeError('信息保存失败，请重新编辑提交！');
+								break;
+								case 3:
+								writeError("标题错误！");
+								break;  
+								case 4:
+								writeError("标签错误！");
+								break;  
+								case 5:
+								writeError("简介错误！");
+								break;  
+								default:
+							}
+
+						}
+					});
+			})
+
+			element.delegate('b', 'click', function(event) {
+				var _this = $(this).parent();
+				var idstr = _this.attr('id');
+				var id = idstr.match(/tag_(\d)*$/);
+				$("#use_"+id[1]).removeClass("on");
+				_this.remove();
+			})
+			myTag.click(function(event) {
+				event.preventDefault();
+				var _this = $(this);
+				(!_this.hasClass('on'))&&insert(_this.addClass('on').html(),_this.attr('index'));
+			});
+		})
+    });
+	
+});
+function delRows(id){
+	$.getJSON('/space/workedit/delalbum?id='+id,function(rs){
+		if(rs.status == 1){
+			$.layer();
+			$("#list_"+id).hide('slow',function(){$(this).remove()})
+		}else{
+			$.layer();
+			alert('删除失败');
+		}
+	})
+}
+
+function addTag(obj){
+	var _this = $(obj);
+	var idstr = _this.attr('id');
+	var id = idstr.match(/use_(\d)*$/);
+	(!_this.hasClass('on'))&&insert(_this.addClass('on').html(),id[1]);
+}
+
+function insert(str,index){
+	var tmp = $('<li><em>'+ str +'</em><b title="删除当前标签"></b></li>');
+	if(index){
+		tmp.attr('id', 'tag_'+index)
+	}
+	$("#my_tit").append(tmp);
+}
+
+
+function getVal(){
+	var tagsObj		= $("#my_tit em");
+	var title		= $("#ed_title").val();
+	var desc		= $("#ed_desc").val();
+	var tag			= '';
+	var sign		= '';
+	var id			= $("#id").val();
+
+	if(tagsObj.length > 0)
+	tagsObj.each(function(i,t){
+		tag += sign+$(t).text();
+		sign = ',';
+	});
+
+	if(title.isEmpty()){
+		writeError('标题不能为空');
+		return false;
+	} 
+	if(desc.isEmpty()){
+		writeError('简介不能为空');
+		return false;
+	} 
+
+	if(id <= 0){
+		writeError('编辑失败');
+		return false;
+	}
+	if(tag.isEmpty()){
+		writeError('请选择一个标签');
+		return false;
+	}
+
+	return {'name':title,'desc':desc,'tag':tag,'id':id,'action':'edit'};
+}
+
+String.prototype.trim=function(){
+	return this.replace(/(^\s*)|(\s*$)/g, "");
+}
+
+String.prototype.isEmpty=function(){
+	var str = this.trim();
+	return (str == '' || str == null)? true:false;
+}
+
+function writeError(msg){
+$("#al_err").text(msg);
+}
+
+function msg_alert(msg){
+	$.layer($("#alert").html())
+	if(msg == undefined) msg = '修改成功';
+	var str = msg+',2秒后自动关闭';
+	$("#alert_msg").text(str);
+	setTimeout(function(){$.layer()},2000);
+}
+</script>
+
+<script type="text/tmpl" id="my_Editor">
+<div class="my_Editor">
+	<h2 class="cWhite">编辑相册信息</h2>
+    <div class="Editor">
+    	<dl><dt>标题：</dt><dd><input type="text" id="ed_title"/></dd></dl>
+    	<dl><dt>简介：</dt><dd><textarea id="ed_desc"></textarea></dd></dl>
+    	<dl><dt>标签：</dt><dd><ul id="my_tit"></ul></dd></dl>
+        <p id="title_ed"></p>
+        <p id="al_err" style="color:red"></p>
+        <div class="cWhite"><a href="javascript:void(0)" id="ed_sub">确定</a></div>
+    </div>
+</div>
+<input type="hidden" name="id" id="id" value="0"/>
+</script>
+<script type="text/tmpl" id="alert">
+	<div class="del_tuji">
+		<h2></h2>
+		<dl>
+			<dt><p class="fY f14px" id="alert_msg">修改成功</p></dt>
+		</dl>
+	</div>
+</script>
+<!--content end-->
+<!--footer begin-->
+<!--footer end-->
+<?php $this->load->view('public/footer.php'); ?>

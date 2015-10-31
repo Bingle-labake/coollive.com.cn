@@ -1,0 +1,226 @@
+<?php $this->load->view('public/common_head.php'); ?>
+<?php $this->load->view('public/space_head.php'); ?>
+<div class="pub-content">
+	<div class="pub-w usr_content" style="background:none;">
+		<div class="b_video_info">
+            <div class="block_form">
+    			<h2 class="b_form_title f14px">为了更好的展现您的作品，请认真填写以下信息。*号为必填项：</h2>
+    			<div class="b_video_form">
+    				<?php if(isset($game)){ ?>
+                    <dl>
+    					<dt>参赛活动：</dt>
+    					<dd><em class="b_form_text"></em></dd>
+    				</dl>
+                    <?php } ?>
+    				<dl>
+    					<dt><em class="cRed">* </em>标题：</dt>
+    					<dd>
+    						<input id="title" type="text" name="title"  class="b_form_input" value="<?php if(isset($video['title'])){echo $video['title'];}?>"/>
+    					</dd>
+    				</dl>
+                    <dl>
+						<dt><em class="cRed">* </em>视频一级分类：</dt>
+						<dd>
+							<span id="category" style="display:block;width: 300px;line-height: 26px;border:1px solid #ccc;padding-left: 10px;">--请选择一级分类--</span>
+						</dd>
+                        <input type="hidden" name="category" value=""/>
+					</dl>
+                    <dl>
+						<dt><em class="cRed">* </em>视频二级分类：</dt>
+						<dd>
+							<span id="category1" style="display:block;width: 300px;line-height: 26px;border:1px solid #ccc;padding-left: 10px;">--请选择二级分类--</span>
+						</dd>
+                        <input type="hidden" name="category1" value=""/>
+					</dl>
+                    <div class="pub-downmenu hide" id="pub-downmenu1"></div>
+                    <script>
+                    //一级分类
+                    $.downMenu($("#category"),$("#pub-downmenu"),function(element){
+                        //$("#typeSelect").html(typeSelect[$("#pub-downmenu").val()]);
+                        $('input:hidden[name="category"]').val(element.data("val"))
+                        getcate(element.data("val"));
+                    });
+                    function getcate(cateid)
+                    {
+                        $.get("/space/video/category1/"+cateid,function(data,status){
+                            var parsedJson = jQuery.parseJSON(data); 
+                            if(status == 'success' && parsedJson.status)
+                            {
+                                var cArray = "";
+                                var cli = "";
+                                cate1 = false;
+                                for(var i=0,len=parsedJson.ctype.length;i<len;i++){
+                                    cArray = parsedJson.ctype[i];
+                                    cli = cli + '<li data-val="'+cArray['id']+'">'+cArray["category"]+'</li>';
+                                    
+                                    if(cArray['cid'] == "<?php echo $video['categoryid1']?>")
+                                    {
+                                        $("#category1").html(cArray["category"]);
+                                        $('input:hidden[name="category1"]').val(cArray["id"]);
+                                    }
+                                    else
+                                    {
+                                        cate1 = true;
+                                    }
+                                } 
+                                $("#pub-downmenu1").html(cli);
+                                if(!cate1)$("#category1").html('--请选择二级分类--');
+                            }
+                            else
+                            {
+                                $("#pub-downmenu1").html('');
+                                $("#category1").html('--无二级分类--');
+                            }
+                        })
+                    }
+                    //二级分类
+                    $.downMenu($("#category1"),$("#pub-downmenu1"),function(element){
+                    	$('input:hidden[name="category1"]').val(element.data("val"))
+                    });
+                    </script>
+                    <div class="pub-downmenu hide" id="pub-downmenu">
+                         <?php foreach($category as $key=>$value)
+                        {
+                            if(!empty($value["cid"])){
+                            ?>
+                            <li data-val="<?php echo $value["id"]?>"><?php echo $value["category"]?></li>
+                            <?php
+                                if($value["cid"] == $video['categoryid'])
+                                {
+                                    ?>
+                                <script>
+                                    $("#category").html('<?php echo $value["category"]?>');
+                                    $('input:hidden[name="category"]').val('<?php echo $value["id"]?>');
+                                    getcate(<?php echo $value["id"]?>);
+                                </script>
+                                    <?php
+                                }
+                            }
+                        }
+                        ?>
+                    </div>
+                    <script>
+                    //一级分类
+                    $.downMenu($("#category"),$("#pub-downmenu"),function(element){
+                        //$("#typeSelect").html(typeSelect[$("#pub-downmenu").val()]);
+                        $('input:hidden[name="category"]').val(element.data("val"))
+                        getcate(element.data("val"));
+                    });
+                    </script>
+    				<dl>
+    					<dt><em class="cRed">* </em>简介：</dt>
+    					<dd>
+    						<textarea id="description" name="description" class="b_form_textarea on"><?php if(isset($video['description'])){echo $video['description'];}?></textarea>
+    					</dd>
+    				</dl>
+    				<dl>
+                        <dt><em class="cRed">* </em>标签：</dt>
+    					<dd id="setTags">
+    						<div class="b_form_tags">
+    							<ul>
+                                <?php if(!empty($info_tag)){ $taginfo = '';?> 
+                                <?php foreach($info_tag as $k=>$v ){ if($k>0){$taginfo .= ','.$v['tag'];}else{$taginfo .= $v['tag'];} ?> 
+                                    <li index="<?php echo $v['tid']; ?>"><em><?php echo $v['tag']; ?></em><b title="删除当前标签"></b></li>
+                                <?php }?>
+                                <?php }?>
+    								<li class="b_form_tags_input"><input type="text" id="tagid"/></li>
+    							</ul>
+                                <span>&nbsp;</span>
+                            </div>
+                        </dd>
+    				</dl>
+                    <dl style="margin-top:-18px;">
+                        <dt> </dt>
+                        <?php if(!empty($tags)){ ?>
+                        <dd class="b_form_tags_all" id="tagtext">已添加标签：
+                        <?php foreach($tags as $tag){ ?>
+                            <a href="" index="<?php echo $tag['tid']; ?>"><?php echo $tag['tag']; ?></a>
+                        <?php } ?>
+                        <?php } ?>
+                        </dd>
+                    </dl>
+                    <input id="tag" type="hidden" name="tag" value="<?php echo $video['tag']; ?>"/>
+                    <script>
+                            $('#tagid').blur(function ()
+                            { 
+                                var tag_i ='';
+                                var tag  = '';
+                                var i = 0;
+                                $('.b_form_tags em').each(function() {
+                                    tag = $(this).html();
+                                    if(i>0)tag_i += ',';
+                                    tag_i += tag;
+                                    i++;
+                                });
+                                $("#tag").val(tag_i);
+                            }) 
+                    </script>
+                    <script>setTags($("#setTags"),$("#tagtext"));//内部节构不要调整。</script>
+                    <div style="padding-left: 187px;display:inline-block;height:30px;color:red;" id="add_data"></div>
+    			</div>
+    			<div class="b_video_btn" id="subinfo"><span class="b_form_btn f14px" >确定</span><i class="ok" id="add_data"></i></div>
+    		</div>
+        </div>
+	</div>
+</div>
+<script>
+
+
+$("#subinfo").delegate("span","click",function(){
+    var titlel = $("#title").val();
+    var tagl = $("#tag").val();
+    var descriptionl = $("#description").val();
+    if(titlel == '' || titlel.length >60)
+    {
+        $("#add_data").html('标题不能为空或大于60个字！');
+        return ;
+    }
+    if(tagl == ''|| tagl.length >40)
+    {
+        $("#add_data").html('标签不能为空或大于30个字！');
+        return $.layer($('#uptishi').html());
+    }
+    if(descriptionl == ''|| descriptionl.length >140)
+    {
+        $("#add_data").html('简介不能为空或大于140个字！');
+        return ;
+    }
+    
+    var title = encodeURIComponent(titlel, "utf-8");
+	var tag = encodeURIComponent(tagl, "utf-8");
+	var description = encodeURIComponent(descriptionl, "utf-8");
+    var category = $('input:hidden[name="category"]').val();
+    var category1 = $('input:hidden[name="category1"]').val();
+    
+    url = '/space/video/submitvideoinfo?vid=<?php echo $video['vid']; ?>';
+    url += "&title=" + title + "&tag=" + tag + "&description=" + description+ "&category="+category + "&category1="+category1;
+    $.get(url, function(data){
+        var jsondata = jQuery.parseJSON(data);
+        switch (jsondata.status)
+        {
+            case 1:
+                $("#add_data").html("信息已保存，5秒后跳转到作品管理！");
+                setTimeout("location.href='/u/work/look'",5000);
+                break;  
+            case 0:
+                $("#add_data").html('信息保存失败，请重新编辑提交！');
+                break;
+            case 2:
+                $("#add_data").html("请先选择视频！");
+                break;  
+            case 3:
+                $("#add_data").html("标题不能为空或大于60个字！");
+                break;  
+            case 4:
+                $("#add_data").html("标签不能为空或大于30个字！");
+                break;  
+            case 5:
+                $("#add_data").html("简介不能为空或大于140个字！");
+                break;  
+        }
+
+    });
+})
+</script>
+<!--content end-->
+<?php $this->load->view('public/footer.php'); ?>

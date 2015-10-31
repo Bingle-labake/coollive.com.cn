@@ -1,0 +1,1 @@
+crossdomain.xml文件直接拷贝到网站根目录下，很重要，不然有时会导致有些浏览器不兼容。关于该文件的详细用法请至http://www.ckplayer.com/article6.php?id=24

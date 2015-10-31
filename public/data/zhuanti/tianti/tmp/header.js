@@ -1,0 +1,16 @@
+document.writeln("<div class=\"sk-head\">");
+document.writeln("	<dl class=\"sk-logo\">");
+document.writeln("    	<dt><a title=\"赛酷网\" href=\"\">赛酷网</a></dt>");
+document.writeln("        <dd class=\"sk-Blogin\">");
+document.writeln("        	<a class=\"show\" href=\"\">登录</a>");
+document.writeln("        	<a href=\"\">注册</a>");
+document.writeln("        </dd>");
+document.writeln("        <dd class=\"sk-Alogin\">");
+document.writeln("        	<ul>");
+document.writeln("            	<li class=\"aname\"><a class=\"cWhite\" href=\"\">hi ! 张海全张海全张海全</a><a class=\"cOrangeb\" href=\"\">退出</a></li>");
+document.writeln("            	<li class=\"bname\"><a class=\"cBlue\" href=\"\">系统通知(1)</a><a class=\"cBlue\" href=\"\">查看私信(10)</a></li>");
+document.writeln("            </ul>");
+document.writeln("        </dd>");
+document.writeln("    </dl>");
+document.writeln("	<div class=\"sk-menu f14px\"><a href=\"\">首页</a>|<a href=\"\">比赛专区</a>|<a href=\"\">参赛作品</a>|<a href=\"\">赛酷圈儿</a></div>");
+document.writeln("</div>");

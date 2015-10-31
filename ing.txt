@@ -1,0 +1,105 @@
+{"user_data":{
+             "env":"production","event":{
+                                        "about":"",
+                                        "broadcasters_enabled":false,
+                                        "coproducable":true,
+                                        "display_questions":0,
+                                        "embed_share_url":null,
+                                        "name":"TBGWT",
+                                        "not_startable_by_coproducers":false,
+                                        "questions_enabled":true,
+                                        "visibility":0,
+                                        "start_at":"2015-05-17T11:30:00-04:00",
+                                        "start_at_epoch":1431876600000,
+                                        "playback_start":0,
+                                        "times":[1431876791563,null],
+                                        "channel_name":"The Black Guy Who Tips",
+                                        "now_broadcasting":true,
+                                        "status":1,
+                                        "event_id":165451,
+                                        "image_url":"//s3.amazonaws.com/spreecast-photos/production/users/355294/tile_480x360/355294_photo.jpg?1352336813",
+                                        "twitter":{"search":null,"include":null},
+                                        "host":{
+                                               "about_me":"Nothing wrong if it's funny ",
+                                               "first_name":"The Black Guy Who Tips",
+                                               "has_been_authenticated":true,
+"last_name":"",
+"needs_to_confirm_email":false,
+"user_id":"the-black-guy-who-tips",
+"alt":355294,
+"admin":false,
+"content_mod":false,
+"profile_photo_thumb_url":"//s3.amazonaws.com/spreecast-photos/production/users/355294/tile_30x30/355294_photo.jpg?1352336813",
+"is_fb":false,
+"ppv_approved":false,
+"is_affiliate":false,
+"following_events":[165451],
+"is_locked":true,
+"plan_name":"Bronze",
+"can_create_spreecast":true,
+"allow_friend_requests":true,
+"vcat":null},
+"num_viewers":30,
+"friendly_id":"tbgwt--337",
+"event_enabled":true,
+"views":272,
+"stitch_urls":{
+              "live_hls":{
+                         "medium":{
+                                  "h264":{
+                                          "aac":"http://spreecast-archives.s3.amazonaws.com/production/165451/avp/live_001/live_medium.m3u8"
+                                         }
+                                  },
+                         "audio":{
+                                  "h264":{
+                                          "aac":"http://spreecast-archives.s3.amazonaws.com/production/165451/avp/live_001/live_au...":true,
+                                          "vcat":null,
+                                          "producer":false
+                                         },
+                                  "id":9100088,
+                                  "text":"it's crazy Sparger.",
+                                  "action":"viewer",
+                                  "recipient_id":null,
+                                  "created_at":1431879897.8189075
+                                 },
+                                 { 
+                                  "user_id":"feltfive",
+                                  "user":{
+                                         "about_me":"I'm a writer/MC/music producer/podcaster(BAP) trying to make it in this industry.",
+                                         "first_name":"FeltFive?",
+                                         "has_been_authenticated":true,
+                                         "last_name":"",
+                                         "needs_to_confirm_email":false,
+                                         "user_id":"feltfive",
+                                         "alt":380937,
+                                         "admin":false,
+                                         "content_mod":false,
+                                         "profile_photo_thumb_url":"//s3.amazonaws.com/spreecast-photos/production/users/380937/tile_30x30/380937_photo.jpg?1394300032",
+                                         "is_fb":false,
+                                         "ppv_approved":false,
+                                         "is_affiliate":false,
+                                         "following_events":[],
+                                         "is_locked":true,
+                                         "plan_name":"Basic",
+                                         "can_create_spreecast":false,
+                                         "allow_friend_requests":true,
+                                         "vcat":null,
+                                         "producer":false
+                                  },
+                                  "id":9100089,
+                                  "text":"RIGHT",
+                                  "action":"viewer",
+                                  "recipient_id":null,
+                                  "created_at":1431879902.5759625
+                                 }],
+        "moderator":[]},
+
+"now_broadcasting":true,
+"stitch_urls":{
+"live_hls":{
+"medium":{
+"h264":{
+"aac":"http://spreecast-archives.s3.amazonaws.com/production/165451/avp/live_001/live_medium.m3u8"
+}
+},
+"audio":{"h264":{"aac":"http://spreecast-archives.s3.amazonaws.com/production/165451/avp/live_001/live_audio.m3u8"}},"high":{"h264":{"aac":"http://spreecast-archives.s3.amazonaws.com/production/165451/avp/live_001/live_medium.m3u8"}}},"live_rtmp":{"medium":{"h264":{"aac":"rtmp://cp128913.live.edgefcs.net/live/event@135004"}}}},"ad_digest":[],"producer_tab_enabled":true,"avp_counter":1,"is_expired":false,"unlisted_embed_enabled":true}}

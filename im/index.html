@@ -1,0 +1,51 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>    
+    <link href="/im/static/css/bootstrap.css" rel="stylesheet">
+    <script src="http://timg2.saiku.com.cn/static/assets/js/jquery1.9.js"></script>
+    <script src="http://timg2.saiku.com.cn/static/zhuanti/tianti/js/base2.0.js"></script>    
+    <script src="/im/static/js/bootstrap.js"></script>
+    <script src="http://img2.saiku.com.cn/static/assets/js/global.js"></script>   
+    <link rel="stylesheet" href="http://timg2.saiku.com.cn/static/zhuanti/tianti/css/base2.0.css" >
+    <title>赛酷网-聊天室</title>
+</head>
+<body>
+<style>
+    * {
+        font-size: 14px;
+    }
+    body {
+        background-color: rgb(131, 131, 131);
+    }
+    input {
+        height: 36px;
+        margin: 5px;
+    }
+    .login {
+        width: 600px;
+        margin: 200px auto;
+    }
+    #show_avatar {
+        width: 120px;
+        position: relative;
+        left: 420px;
+        top: -140px;
+    }
+    #show_avatar img {
+        border-radius: 8px;
+    }
+</style>
+<script>
+    /* db_connect('my.db', function(db) {
+     }); */
+    if(SK_UID > 0) {
+    	window.location.href = "/im/room.html?rid=100";
+    }else {
+    	$.layer('http://demo.i.saiku.com.cn/api/member/common_login?backurl='+window.location.href+'&r='+Date.parse(new Date()),{width:765, height:350});  
+    }
+</script>
+
+<div class='container login'>   
+</div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+body{background:#600c02;line-height:24px;color:#666;}
+html{overflow-x:hidden;}
+.bonusCondt{width:1436px;overflow:hidden;margin:0 auto;}
+.b1{width:100%;height:335px;overflow:hidden;background:url(../img/bonus_img001.png) no-repeat;position:relative;}
+.b1 p{text-indent:24px;line-height:24px;color:#fff;width:470px;position:absolute;left:459px;top:208px;}
+.bTitle{width:100%;height:164px;overflow:hidden;padding-top:100px;margin:0 auto;}
+.b2{height:150px;background:url(../img/bonus_img002.png) no-repeat;}
+.b3{width:1000px;height:164px;background:url(../img/bonus_img003.png) no-repeat center;}
+.b4{width:1000px;height:164px;background:url(../img/bonus_img004.png) no-repeat center;}
+.b5{width:1000px;height:164px;background:url(../img/bonus_img005.png) no-repeat center;}
+.bText{width:840px;overflow:hidden;margin:0 auto;line-height:24px;margin-bottom:15px;}
+.bText dt{width:70px;float:left;font-weight:bold;}
+.bText dd{width:770px;float:right;}
+
+.bock1{background:#d5e0ee;}
+.bock2{background:#ebd3a8;}
+.bock3{background:#fed0c0;}
+.bock4{background:#f7cae1;}
+
+.bon_text{width:880px;overflow:hidden;margin:0 auto;}
+.bon_but{width:100%;height:30px;overflow:hidden;padding-top:30px;text-align:center;margin:0 auto;}
+.bon_but a,.bon_but a:hover,.bon_but em{width:204px;height:30px;display:block;margin:0 auto;background:#f39800;color:#fff;font:16px/30px 'Microsoft YaHei';}
+.bon_but em{background:#999;}
+.bon_text dl{width:188px;height:208px;padding:12px 9px 0px;float:left;margin:0 3px 10px 8px;overflow:hidden;display:inline-block;}
+.bock1 dl{border:1px solid #567f91;}
+.bock2 dl{border:1px solid #c3a36d;}
+.bock3 dl{border:1px solid #ed6d34;}
+.bock4 dl{border:1px solid #fd0381;}
+.bock1 dd{color:#567f91;}
+.bock2 dd{color:#ba7e18;}
+.bock3 dd{color:#ed6d34;}
+.bock4 dd{color:#fd0381;}
+.bon_text dl.end1{height:100px;padding-top:26px}
+.bon_text dl.end2{height:70px;}
+
+
+.uleed{width:532px;overflow:hidden;margin:0 auto;}
+.uleed li{float:left;width:159px;overflow:hidden;display:inline-block;margin:0 9px;}

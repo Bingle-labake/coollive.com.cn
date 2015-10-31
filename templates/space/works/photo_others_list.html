@@ -1,0 +1,39 @@
+<?php $this->load->view('public/common_head.php'); ?>
+<?php $this->load->view('public/space_head.php'); ?>
+<div class="pub-content">
+	<div class="pub-w usr_content">
+		<?php $this->load->view('public/space_left.php'); ?>
+		<div class="usr_contentR fr">
+			<div class="usr_filter">
+				<ul class="cWhite">
+					<li <?php if($type == 0){echo 'class="on"';} ?> ><a href="/u/work/look">参赛作品</a></li>
+					<li <?php if($type == 1){echo 'class="on"';}?>><a href="/u/work/video">非参赛视频</a></li>
+                    <li <?php if($type == 2){echo 'class="on"';}?>><a href="/u/work/album">非参赛图集</a></li>
+				</ul>
+			</div>
+			<div class="usr_manageOther">
+                <?php if(isset($photo)){foreach($photo as $k => $info){?> 
+				<dl>
+					<dt class="cWhite">
+						<a target="_blank" href="<?php echo $this->config->item('base_url').$info['pic_url']?>"><img width="190px" height="150px" src="<?php echo $info['pic_path']?>" alt="<?php echo $info['name']?>"></a>
+						<strong><a target="_blank" href="<?php  echo $this->config->item('base_url').$info['pic_url']?>"><?php echo $info['name']?></a></strong>
+					</dt>
+					<dd><a href="/space/workedit/album?id=<?php echo $info['album_id'];?>">编辑</a>&nbsp;&nbsp;<a href="javascript:;" onclick="$.layer($('#albumdel_<?php echo $k;?>').html())">删除</a></dd>
+				    <script type="text/tmpl" id="albumdel_<?php echo $k;?>">
+                        <div class="del_tuji">
+                        	<h2></h2>
+                            <dl>
+                            	<dt><p class="fY f14px">您确定要删除图集吗？</p><p class="cOrange">删除图集将不可恢复，请您谨慎操作</p></dt>
+                                <dd><a class="qux" onClick="$.layer()" href="javascript:;">取消</a><a href="javascript:;" onclick="$.get('/space/workedit/delalbum?id=<?php echo $info['album_id'];?>',function(data){location.href='/u/work/album';});">确定</a></dd>
+                            </dl>
+                        </div>
+                    </script>
+                </dl>
+                <?php }} ?>
+			</div>
+			<?php if(isset($page)){echo $page;}?>
+		</div>
+	</div>
+</div>
+<!--content end-->
+<?php $this->load->view('public/footer.php'); ?>

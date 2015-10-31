@@ -1,0 +1,111 @@
+.listTit{width:1000px;background:#e6e6e6;margin:10px auto 0;overflow:hidden;border-bottom:1px solid #ccc;height:30px;}
+.listTit li{overflow:hidden;float:left;height:29px;line-height:29px;text-align:center;cursor:pointer;border:1px solid #ccc;overflow:hidden;border-bottom:none;}
+.listTit li a{height:29px;line-height:29px;padding:0 24px;display:inline-block;color:#3e3e3e;}
+.listTit li.on a{background:#ed6d34;color:#fff;border:none;padding:0 25px;line-height:30px;height:30px;}
+
+.listBox{width:980px;overflow:hidden;margin:0 auto 10px;background:#fff;padding:10px;color:#666;}
+.list_info{width:980px;overflow:hidden;}
+.list_seach{width:957px;height:40px;overflow:hidden;padding:0 13px 0 10px;background:#f1f1f1;}
+.list_seach dt{line-height:40px;color:#4c4c4c;}
+.list_seach dd{width:251px;height:32px;overflow:hidden;background:url(../img/icon_selse.png) no-repeat;margin-top:4px;}
+.list_seach dd input{width:202px;overflow:hidden;border:none;background:none;float:left;color:#999;padding:9px 8px 7px;}
+.list_seach dd button{width:25px;height:32px;overflow:hidden;border:none;background:none;float:right;cursor:pointer;margin-right:6px;}
+
+.list_List{padding-top:12px;overflow:hidden;}
+.list_List .item,.list_List .itemz{width:980px;border-bottom:1px dashed #ccc;overflow:hidden;}
+.list_List .Img{width:170px;overflow:hidden;padding-top:26px;text-align:center;}
+.list_List .Img dt{width:120px;height:120px;overflow:hidden;position:relative;margin:0 auto;}
+.list_List .Img dt img{border-radius:10em;-moz-border-radius:10em;-webkit-border-radius:10em;border-radius:10em;}
+.list_List .Img dt span{width:120px;height:120px;display:block;background:url(../img/usr_head2.png) no-repeat;position:absolute;left:0;top:0px;}
+.list_List .Img dd{padding-top:9px;}
+.list_List .Text{width:318px;overflow:hidden;padding-top:40px;}
+.list_List .Text dt{line-height:28px; vertical-align:middle;}
+.list_List .Text dt em{display:inline-block;padding:0 14px;overflow:hidden;color:#fff;background:#009fb9;line-height:20px;margin:2px 3px; vertical-align:middle;cursor:pointer;}
+.list_List .Text dd{width:300px;line-height:24px;padding-bottom:20px;overflow:hidden;}
+.list_List .Rigt{width:490px;padding-top:46px;overflow:hidden;}
+.list_List .Rigt_tip{text-align:right;height:32px;line-height:21px;}
+.list_List .Rigt_tip em{padding:0 10px;overflow:hidden;height:21px;margin-left:10px;color:#fff;background:#f39800;display:inline-block; vertical-align:middle;}
+.list_List .Rigt_bit{width:500px;overflow:hidden;padding-bottom:15px;}
+.list_List .Rigt_bit dl{float:left;width:165px;overflow:hidden;position:relative;height:120px;}
+.list_List .Rigt_bit dt{width:160px;height:120px;overflow:hidden;}
+.list_List .Rigt_bit dt i{position:absolute;width:47px;height:47px;background:url("../img/hom_video1_.png") no-repeat;opacity:0.6;filter:aplha(opacity=60);z-index:2;left:50%;top:50%;margin:-24px 0 0 -24px}
+.list_List .Rigt_bit dt span{position:absolute;top:-40px;right:5px;height:15px;width:40px;display:block;overflow:hidden;color:#000;text-align:right;font-family:Arial;}
+.list_List .Rigt_bit dd{width:160px;height:17px;padding-top:6px;text-align:center;position:absolute;left:0;bottom:-40px;background:#000;background:rgba(0,0,0,0.6); white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.list_List .Rigt_bit dl.on dd{bottom:0;}
+.list_List .Rigt_bit dl.on dt span{top:8px; right:14px;}
+
+.list_List .itemz .Img{height:230px;padding-top:36px;}
+.list_List .itemz .Img dd span{width:120px;height:36px;line-height:36px;overflow:hidden;display:inline-block;margin:0 auto;color:#fff;background:#999;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;cursor:pointer;}
+.list_List .itemz .Img dd em{padding-top:20px;display:block;}
+.list_List .itemz .Img dd a.sq,.list_List .itemz .Img dd a.tui{width:80px;height:36px;line-height:36px;overflow:hidden;display:inline-block;margin:0 auto;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;color:#fff;background:#f39800;}
+.list_List .itemz .Img dd a.sq:hover{color:#fff;background:#feb337;text-decoration:none;}
+.list_List .itemz .Img dd a.tui{color:#3e3a39;background:#bae3f9;}
+.list_List .itemz .Img dd a.tui:hover{color:#3e3a39;background:#bae3f9;text-decoration:none;}
+.list_List .itemz .Text{padding-top:58px;}
+.f_conter{width:1000px;margin:0 auto;overflow:hidden;background:#fff;}
+.f_title{padding:24px 0 0 20px;width:980px;height:23px;overflow:hidden;border-bottom:2px solid #ed6d34;color:#5e5e5e;}
+.f_seach{width:940px;height:45px;overflow:hidden;padding:10px 39px 0 21px;background:#f1f1f1;}
+.f_seach dt div{background:#fff url(../img/icon_arrow.png) no-repeat right center;width:185px;height:30px;overflow:hidden;border:1px solid #e6e6e6;padding-left:10px;line-height:30px;border-radius:3px;color:#5e5e5e;}
+.f_seach dt.f_Concern{float:left;display:none;margin-top:4px;padding-left:6px;line-height:24px; vertical-align: middle;}
+.f_seach dt.f_Concern a{width:76px;height:24px;text-align:center;overflow:hidden;display:inline-block;margin-right:10px;background:#f39800;color:#fff;-moz-border-radius:3px;-webkit-border-radius:3px;border-radius:3px;cursor:pointer;vertical-align: middle;}
+.f_seach dt.f_Concern i{margin-left:18px;color:#0823f0; text-decoration:underline;cursor:pointer;vertical-align: middle;}
+.f_seach dd{width:251px;height:32px;overflow:hidden;background:url(../img/icon_selse.png) no-repeat;margin-top:4px;}
+.f_seach dd input{width:202px;overflow:hidden;border:none;background:none;float:left;color:#999;padding:9px 8px 7px;}
+.f_seach dd button{width:25px;height:32px;overflow:hidden;border:none;background:none;float:right;cursor:pointer;margin-right:6px;}
+.f_weilist{width:1000px;overflow:hidden;}
+.f_box{width:1000px;overflow:hidden;padding:10px;}
+.f_box .item{width:318px;height:185px;overflow:hidden;border:1px solid #e6e6e6;float:left;margin:0 10px 10px 0;position:relative;cursor:pointer;}
+.f_box .itemlf{width:165px;overflow:hidden;float:left;height:185px;}
+.f_box .itemlf a{width:115px;height:115px;overflow:hidden;margin:30px auto 0;-moz-border-radius:10em;-webkit-border-radius:10em;border-radius:10em;display:block;}
+.f_box .item .scfs,.f_box .item .qguanz{width:48px;height:14px;overflow:hidden;position:absolute;top:6px;left:9px;color:red;cursor:pointer;}
+.f_box .item .qguanz{color:#ed6d34;width:60px;left:4px;}
+.f_box .item i.duiGou{width:26px;height:24px;overflow:hidden;background:url(../img/icon_26_24.png) no-repeat;position:absolute;right:0;top:0;display:none;}
+.f_box .item dl{padding-top:20px;}
+.f_box .item dt{height:26px;line-height:24px;}
+.f_box .item dd{padding-top:10px;line-height:22px;}
+.f_box .item dd span{width:52px;height:22px;-moz-border-radius:3px;-webkit-border-radius:3px;border-radius:3px;display:inline-block;background:#ed6d34;text-align:center;cursor:pointer;}
+.f_box .on{border:1px solid #ed6d34;}
+.f_box dd a{width:76px;height:22px;overflow:hidden;display:inline-block;margin-right:10px;background:url(../img/icon_gz.png) no-repeat;text-indent:-999px;float:left;}
+.f_box dd a:hover{background-position:0px -22px;}
+.f_box .follow{background-position:0px -66px;}
+.f_box .xhgzhu{background-position:0px -44px;}
+.f_box .xhgzhu:hover,.f_box .follow:hover{background-position:-0px -88px;}
+.siXin{width:425px;overflow:hidden;background:#fff;position:relative;}
+.siXintit{height:26px;padding:12px 20px 0 32px;background:#efa280;}
+.siXin dl{width:381px;height:192px;overflow:hidden;padding:18px 22px 0;}
+.siXin dt{width:60px;float:left;height:190px;}
+.siXin dd{width:295px;padding-top:3px;float:left;text-align:right; vertical-align:middle;}
+.siXin textarea{width:283px;height:117px;overflow:hidden;padding:5px;border:1px solid #ccc;color:#999;}
+.siXin dd input{width:75px;height:30px;line-height:30px;overflow:hidden;text-align:center;background:#ed6d34;display:inline-block;margin:10px 0 0 15px;color:#fff; vertical-align:middle;border:none;cursor:pointer;}
+.siXin dd span{display:inline-block; vertical-align:middle;padding-top:9px;}
+.siXin em.cg{width:148px;height:54px;line-height:54px;text-align:center;background:#4c4c4c;position:absolute;left:159px;top:110px;z-index:9;}
+.delfei{width:415px;overflow:hidden;background:#fff;}
+.delfei .siXintit{width:368px;}
+.delfei dl{width:371px;padding:18px 22px 0;overflow:hidden;height:140px;text-align:center;}
+.delfei dt{line-height:24px;padding-top:21px;height:54px;}
+.delfei dd{width:371px;overflow:hidden;}
+.delfei dd a{width:62px;height:30px;line-height:30px;margin:0 5px;display:inline-block;background:#ed6d34;}
+.delfei dd a:hover,.siXin dd a:hover{background:#efa280;}
+
+.WINCLOSE{display:none;}
+.Qiugz dt{width:360px;float:left;height:22px;}
+.Qiugz dd{width:370px;float:left;}
+.Qiugz dd textarea{width:360px;height:90px;}
+
+
+.my_listTit{width:980px;background:#bae3f9 url(../img/icon_title_bg.png) repeat-x bottom;margin:10px auto 0;padding:0px 10px;overflow:hidden;height:42px;}
+.my_listTit dt{float:left;overflow:hidden;margin-top:12px;height:30px;}
+.my_listTit dt a{display:inline-block;padding:0 15px;line-height:30px;}
+.my_listTit dt.on a{background:#fff;}
+.my_listTit dd{width:251px;height:32px;overflow:hidden;background:url(../img/icon_selse.png) no-repeat;margin-top:4px;float:right;}
+.my_listTit dd input{width:202px;overflow:hidden;border:none;background:none;float:left;color:#999;padding:9px 8px 7px;}
+.my_listTit dd button{width:25px;height:32px;overflow:hidden;border:none;background:none;float:right;cursor:pointer;margin-right:6px;}
+.list_List .my_item{height:270px;}
+.list_List .my_item .Img{height:230px;padding-top:36px;}
+.list_List .my_item .Img dd span{width:120px;height:36px;line-height:36px;overflow:hidden;display:inline-block;margin:0 auto;color:#fff;background:#999;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;cursor:pointer;}
+.list_List .my_item .Img dd em{padding-top:20px;display:block;}
+.list_List .my_item .Img dd a.sq{width:80px;height:36px;line-height:36px;overflow:hidden;display:inline-block;margin:0 auto;color:#fff;background:#f39800;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;}
+.list_List .my_item .Img dd a.sq:hover{color:#fff;background:#feb337;text-decoration:none;}
+.list_List .my_item .Text{padding-top:58px;}
+
+

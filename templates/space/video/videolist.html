@@ -1,0 +1,114 @@
+<?php $this->load->view('public/common_head.php'); ?>
+<?php $this->load->view('public/space_head.php'); ?>
+<div class="pub-content">
+	<div class="pub-w usr_content">
+		<?php $this->load->view('public/space_left.php'); ?>
+		<div class="usr_contentR fr">
+			<div class="usr_filter">
+                <?php if($type === false){ ?><div class="pub-select" id="iisgame"></div><?php } ?>
+				<ul class="cWhite">
+					<li <?php if($type === false){echo 'class="on"';} ?> ><a href="/space/work/user">参赛作品</a></li>
+					<li <?php if($type !== false){echo 'class="on"';}?>><a href="/space/work/user?type=0">其它</a></li>
+				</ul>
+			</div>
+			<div class="usr_manage">
+                <?php if($count){ foreach($video as $info){ 
+                    switch($info['status'])
+                    { 
+                        case 2;
+                    ?>
+                    <dl>
+    					<dt class="cWhite">
+    						<img src="<?php echo $img_url;?>/images/video<?php echo $info['pic_path']?>1,h_150,w_190.jpg" alt="" >
+    						<strong><?php echo $info['title']; ?></strong>
+    					</dt>
+    					<dd>
+    						<p class="verify cRed f14px">转码成功！视频审核中，请您耐心等待……</p>
+    					</dd>
+    				</dl> 
+                    <?php
+                            break;  
+                        case 3;
+                    ?>
+                    <dl>
+    					<dt class="cWhite">
+    						<div><a target="_blank" href="<?php echo $v_path;?>video/play/<?php echo $info['id']; ?>"></a></div>
+    						<img src="<?php echo $img_url;?>/images/video<?php echo $info['pic_path']?>1,h_150,w_190.jpg" alt="" >
+    						<strong><a target="_blank"  href="<?php echo $v_path;?>video/play/<?php echo $info['id']; ?>"><?php echo $info['title']?></a></strong>
+    					</dt>
+                        <dd>
+    						<div class="date">上传时间：2014-02-15</div>
+    						<?php if($info['type'] === 0){ ?><div class="share"><a  href="javascript:;" onclick="$.layer($('#videodel').html())">删除</a></div>
+                            
+                            
+                            <script type="text/tmpl" id="videodel">
+                            	<dl class="pub-confirm">
+                            		<dt>
+                            			<strong class="f16px cOrange fY">是否删除该视频！</strong>
+                            		</dt>
+                            		<dd><a href="javascript:;" onclick="$.layer()">否</a><a href="javascript:;" onclick="$.get('/video/delvideo/<?php echo $info['id'];?>',function(data){$.layer();});">是</a></dd>
+                            	</dl>
+                            </script>
+                            <?php }?>
+    						<div class="tag">
+    							<p class="f14px fY">参赛活动：<?php echo @$info['longtitle'];?><br>视频标题：<?php echo $info['title'];?></p>
+    							<strong class="tag cOrange">标签：<?php echo $info['tag'];?></strong>
+    						</div>
+    					</dd>
+                    </dl>    
+                    <?php
+                            break;  
+                        case 1;
+                    ?>
+                    <dl>
+    					<dt class="cWhite">
+    						<img src="<?php echo $img_url;?>/images/video<?php echo $info['pic_path']?>1,h_150,w_190.jpg" alt="">
+    						<strong><?php echo $info['title']; ?></strong>
+    					</dt>
+    					<dd>
+    						<p class="verify cRed f14px">视频转码中，请您耐心等待……</p>
+    					</dd>
+    				</dl>  
+                    <?php
+                            break; 
+                        default:
+                    ?>
+                    
+                    <dl>
+    					<dt class="cWhite">
+    						<i class="f14px">出错啦</i>
+    					</dt>
+    					<dd>
+    						<div class="date">上传时间：2014-02-15</div>
+    						<p class="verify"><i class="cRed f14px">该视频审核未通过，触及到敏感内容</i><br>如有问题，<a class="cRed fB" href="">请填写问题提交给我们</a></p>
+    					</dd>
+    				</dl>   
+                    <?php
+                         break;} 
+                    }} 
+                    ?>	
+				
+			</div>
+			<?php if(isset($page)){echo $page;}?>
+		</div>
+	</div>
+</div>
+ <?php if($type === false){ ?>
+<div class="pub-downmenu hide" id="pub-downmenu">
+<?php foreach($game as $k => $info){ 
+    if($info['id'] == $gid ){ ?>
+    <script>
+        $('#iisgame').html('<?php echo $info['longtitle']?>');
+    </script>    
+    <?php }else{ ?>
+    <li data-val="<?php echo $info['id']?>"><?php echo $info['longtitle']?></li>
+<?php } } ?>
+</div>
+<script>
+$.downMenu($("#iisgame"),$("#pub-downmenu"),function(element){
+    location.href='/space/work/user?gid='+element.data("val");
+});
+</script>
+<?php } ?>
+<!--content end-->
+<?php $this->load->view('public/footer.php'); ?>

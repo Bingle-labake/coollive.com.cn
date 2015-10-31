@@ -1,0 +1,3 @@
+<div >
+    <script src="<?php echo $this->config->item('v_player'); ?>?vid=<?php echo $video['vid'];?>&siteid=9610FEEDA921B997&autoStart=true&width=1000&height=520&playerid=94567D5CE8782BB0&playertype=1" type="text/javascript"></script>
+</div>
